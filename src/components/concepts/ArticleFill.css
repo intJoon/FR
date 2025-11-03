@@ -1,0 +1,171 @@
+.article-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.sentence-display {
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.sentence-word {
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.sentence-word:hover {
+  background: #e9ecef;
+}
+
+.word-translation {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  background: #2c3e50;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 100;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  min-width: 120px;
+  text-align: center;
+}
+
+.word-translation > div {
+  line-height: 1.5;
+}
+
+.word-gender {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 12px;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.word-translation::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #2c3e50;
+}
+
+.blank-container {
+  position: relative;
+  display: inline-block;
+}
+
+.article-input {
+  font-size: 18px;
+  padding: 10px 12px;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 60px;
+  min-height: 44px;
+  transition: all 0.2s;
+}
+
+.article-input:focus {
+  outline: none;
+  border-color: #2980b9;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.article-input.correct {
+  background: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.article-input.incorrect {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.article-input:disabled {
+  cursor: not-allowed;
+}
+
+
+.next-button {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 44px;
+}
+
+.next-button:hover {
+  background: #229954;
+  transform: translateY(-2px);
+}
+
+.article-answer {
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.article-answer.correct-item {
+  background: #d4edda;
+  color: #155724;
+}
+
+.article-answer.incorrect-item {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+@media (max-width: 768px) {
+  .sentence-display {
+    font-size: 15px;
+    padding: 16px;
+    line-height: 1.6;
+  }
+
+  .article-input {
+    font-size: 16px;
+    padding: 8px 10px;
+    min-height: 44px;
+  }
+
+  .next-button {
+    padding: 12px 24px;
+    font-size: 14px;
+    min-height: 44px;
+  }
+}
+

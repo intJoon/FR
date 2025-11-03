@@ -1,0 +1,84 @@
+import React, { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { QuestionCard } from '../QuestionCard'
+import { generateTimeExpression } from '../../utils/timeUtils'
+import { speakFrench, stopSpeech } from '../../utils/speechUtils'
+import { useSettings } from '../../context/SettingsContext'
+import { compareText } from '../../utils/textUtils'
+import './TimeDictation.css'
+
+interface TimeDictationProps {
+  onAnswerChecked?: (isCorrect: boolean, question?: string, userAnswer?: string, correctAnswer?: string) => void
+  onStop?: () => void
+}
+
+export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, onStop }) => {
+  const { t } = useTranslation()
+  const { settings } = useSettings()
+  const [currentProblem, setCurrentProblem] = useState(generateTimeExpression())
+  const [input, setInput] = useState('')
+  const [showAnswer, setShowAnswer] = useState(false)
+  const [isCorrect, setIsCorrect] = useState(false)
+  const [_problemIndex, setProblemIndex] = useState(0)
+
+  useEffect(() => {
+    speakFrench(currentProblem.text)
+    return () => stopSpeech()
+  }, [currentProblem])
+
+  const handleCheck = () => {
+    const correct = compareText(input, currentProblem.answer, settings)
+    setIsCorrect(correct)
+    setShowAnswer(true)
+    onAnswerChecked?.(correct, currentProblem.text, input, currentProblem.answer)
+  }
+
+  const handleNext = () => {
+    const newProblem = generateTimeExpression()
+    setCurrentProblem(newProblem)
+    setInput('')
+    setShowAnswer(false)
+    setProblemIndex((prev) => prev + 1)
+  }
+
+  const handleReplay = () => {
+    stopSpeech()
+    speakFrench(currentProblem.text)
+  }
+
+  return (
+    <QuestionCard
+      title={t('timeDictation.title')}
+      instruction={t('timeDictation.instruction')}
+      onCheck={handleCheck}
+      onStop={onStop || (() => {})}
+      showAnswer={showAnswer}
+      answer={currentProblem.answer}
+      isCorrect={isCorrect}
+      showReplay={true}
+      onReplay={handleReplay}
+    >
+      <div className="time-dictation-container">
+        <input
+          type="text"
+          className="time-input"
+          value={input}
+          onChange={(e) => setInput(e.target.value.replace(/\D/g, '').slice(0, 4))}
+          placeholder="0000"
+          maxLength={4}
+          autoComplete={settings.pureKeyboard ? 'off' : 'on'}
+          autoCapitalize="off"
+          autoCorrect="off"
+          spellCheck={false}
+          disabled={showAnswer}
+        />
+        {showAnswer && (
+          <button className="next-button" onClick={handleNext}>
+            {t('common.next')}
+          </button>
+        )}
+      </div>
+    </QuestionCard>
+  )
+}
+

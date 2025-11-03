@@ -1,0 +1,77 @@
+{
+  "app": {
+    "title": "프랑스어 학습",
+    "concepts": {
+      "time": "시간 받아쓰기",
+      "vocabulary": "단어 외워쓰기",
+      "articles": "관사 채우기",
+      "word": "단어 받아쓰기"
+    }
+  },
+  "settings": {
+    "title": "설정",
+    "language": "언어",
+    "languageOptions": {
+      "en": "영어",
+      "ko": "한국어",
+      "zh-TW": "중국어 정체"
+    },
+    "skillImprovement": {
+      "title": "실력 향상",
+      "pureKeyboard": "순수 키보드",
+      "pureKeyboardDesc": "자동완성 끄기",
+      "caseSensitive": "대소문자 검사",
+      "caseSensitiveDesc": "대소문자 확인",
+      "accentSensitive": "악센트 검사",
+      "accentSensitiveDesc": "악센트 확인"
+    }
+  },
+  "timeDictation": {
+    "title": "시간 받아쓰기",
+    "instruction": "시간을 듣고 24시간제 형식(4자리 숫자)으로 적으세요"
+  },
+  "vocabulary": {
+    "title": "단어 외워쓰기",
+    "instruction": "모든 항목을 기억해서 적으세요",
+    "months": "12개월",
+    "seasons": "4계절",
+    "days": "7요일"
+  },
+  "articles": {
+    "title": "관사 채우기",
+    "instruction": "빈칸에 관사를 채우세요",
+    "hint": "단어를 누르면 성별 정보를 볼 수 있습니다",
+    "explanation": "설명",
+    "masculine": "남성형",
+    "feminine": "여성형",
+    "both": "남성형/여성형"
+  },
+  "wordDictation": {
+    "title": "단어 받아쓰기",
+    "instruction": "들으면서 빈칸에 단어를 적으세요"
+  },
+  "statistics": {
+    "title": "통계",
+    "total": "전체",
+    "correct": "정답",
+    "incorrect": "오답",
+    "accuracy": "정답률",
+    "history": "이력",
+    "question": "문제",
+    "yourAnswer": "내 답"
+  },
+  "common": {
+    "check": "정답 확인",
+    "next": "다음",
+    "previous": "이전",
+    "stop": "그만하기",
+    "restart": "다시 시작",
+    "replay": "다시 듣기",
+    "statistics": "통계",
+    "correct": "정답",
+    "incorrect": "오답",
+    "answer": "답",
+    "close": "닫기"
+  }
+}
+

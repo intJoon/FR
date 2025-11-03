@@ -1,0 +1,77 @@
+{
+  "app": {
+    "title": "學習法語",
+    "concepts": {
+      "time": "時間聽寫",
+      "vocabulary": "單字記憶",
+      "articles": "冠詞填空",
+      "word": "單字聽寫"
+    }
+  },
+  "settings": {
+    "title": "設定",
+    "language": "語言",
+    "languageOptions": {
+      "en": "英語",
+      "ko": "韓語",
+      "zh-TW": "繁體中文"
+    },
+    "skillImprovement": {
+      "title": "提升實力",
+      "pureKeyboard": "純鍵盤",
+      "pureKeyboardDesc": "關閉自動完成",
+      "caseSensitive": "大小寫檢查",
+      "caseSensitiveDesc": "檢查大小寫",
+      "accentSensitive": "重音符號檢查",
+      "accentSensitiveDesc": "檢查重音符號"
+    }
+  },
+  "timeDictation": {
+    "title": "時間聽寫",
+    "instruction": "聽時間並以24小時制格式（4位數字）寫下"
+  },
+  "vocabulary": {
+    "title": "單字記憶",
+    "instruction": "憑記憶寫下所有項目",
+    "months": "12個月",
+    "seasons": "4個季節",
+    "days": "7個星期"
+  },
+  "articles": {
+    "title": "冠詞填空",
+    "instruction": "填入缺少的冠詞",
+    "hint": "點擊單字查看性別資訊",
+    "explanation": "說明",
+    "masculine": "陽性",
+    "feminine": "陰性",
+    "both": "陽性/陰性"
+  },
+  "wordDictation": {
+    "title": "單字聽寫",
+    "instruction": "聽並寫下缺少的單字"
+  },
+  "statistics": {
+    "title": "統計",
+    "total": "題數",
+    "correct": "答對",
+    "incorrect": "答錯",
+    "accuracy": "答對率",
+    "history": "紀錄",
+    "question": "問題",
+    "yourAnswer": "您的答案"
+  },
+  "common": {
+    "check": "檢查答案",
+    "next": "下一個",
+    "previous": "上一個",
+    "stop": "結束",
+    "restart": "重新開始",
+    "replay": "重播",
+    "statistics": "統計",
+    "correct": "答對",
+    "incorrect": "答錯",
+    "answer": "答案",
+    "close": "關閉"
+  }
+}
+

@@ -1,0 +1,46 @@
+프랑스어 공부용 웹사이트(모바일도 원활하게)를 만들어 배포해서 친구들도 사용 가능하게 하고 싶어.
+
+공부할 내용은
+1번 개념 - 시간 받아쓰기
+    불어 음성을 듣고 숫자 네 자리 적어내기
+    문제는 12시간제, 24시간제, 일상적 시간 표현 다 섞어서 내는데 답은 24시간제로 통일해서 적어.
+    몇시 반(et demi), 정오(midi), 자정(minuit), 15분 전(moins le quart), 몇 시 몇 분 전(moins), 몇시 15분(et quart), 오전(du matin), 오후(de l'apres-midi), 새벽(du petit matin), 저녁(du soir), 정각(pile) 이런 표현도 다 섞어 내야 해.
+2번 개념 - 단어 외워쓰기
+    12개월/4계절/7요일 단순 암기, 힌트 없이 오로지 본인이 다 써야 함.
+    주제별로 빈칸만 쫙 나옴.
+    4계절은 관사도 써야 정답임.
+3번 개념 - 관사 채우기
+    문장에서 비워진 관사 채우기.
+    문장은 인터넷 학습지에서 여러 방면으로 긁어오자. 일단은 알프스 자연 풍경 묘사 문장은 꼭 있어야 해.
+    정답 확인하면 각 자리마다 왜 그 관사를 써야 하는지 이유를 설명해줌.
+    남성형/여성형인지 힌트는 수식하는 단어 누르면 팝업나와서 알려줌.
+    종류: 좋아하는 것일 때, 불특정할 때, 부정할 때, 부분일 때, 형용할 때, 악기/운동일 때, 단위일 때...
+4번 개념 - 단어 받아쓰기
+    부동산 관련 문장 전체를 들으면서 일부 빈칸으로 된 부동산 관련 단어를 들은대로 따라 쓰기.
+    단어 풀은 {un voisin, une voisine, regarder, déménager, rue de Rennes, un deux-pièces, un trois-pièces, un séjour, une chambre, une cuisine, une salle de bains, le plan de l'appartement, 80 mètres carrés, un arrondissement, un quartier, un immeuble, un étage, quatrième, cinquième, sixième, pour, neuf, neuve, un petit trois-pièces, un beau cinq-pièces, Ah non, c'est trop cher, pour moi, loin, grand, un employé, Une employée, sympathique, vivant, vivante, un immeuble, ancien, ancienne, un ascenseur, clair, claire, un jardin, pour le quartier, haut, haute, vous désirez, Attendez, Ah voilà, un quartier vivant, animé}
+    단어 풀에 단어는 변형 가능해. 관사 바꿔도 없어도 되고, 동사 바꿔도 되고, 부분만 써도 되고, 남성형 여성형 바꿔도 되고.
+    한 단어는 최대 2문제까지만 출제.
+
+웹사이트 개념
+    시중에 나와있는 퀴즈 앱처럼 예쁘고 직관적이게 만들기.
+    개념마다 문제가 둥근 정사각형 카드 형식으로 배열돼 있는데, 좌로 스와이프하면 다음 문제, 우로 스와이프하면 이전 문제로 넘어감.
+    문제 카드를 풀고 나서 정답 확인 버튼을 누르면 정답을 볼 수 있음.
+    정답 확인을 해야 좌우 스와이프를 할 수 있음.
+    문제는 무한대로 제공되지만, 원하면 언제든 그만하기 버튼으로 통계 화면으로 넘어갈 수 있음.
+    문제 무한하게 계속 낼 때는 말이야, 기본적으로 중복되지 않게 연속 출제하는데, 만약 틀린 문제가 생기면 틀린 문제를 근접하게 배치해줘. 그리고 그 문제를 맞히면 다시 일반 문제들 처럼 대하면 돼.
+    만약 틀린 문제 없이 하드코딩된 문제를 한 바퀴 다 풀었으면, 그 때부터는 문제를 생성해서 제공해야 해, 그렇게 생성된 문제는 문제와 정답에 문법적 오류가 없는지 확인하고 출제해.
+    1하고 4번 개념은 듣기니까 다시 듣기 가능해야 해.
+
+설정 화면
+    언어
+        기본이 영어이고, 한국어, 중국어 정체 이렇게 고를 수 있어.
+        문제와 답 빼고 보여지는 모든 영역이 언어 설정이 돼야 해.
+    실력 향상
+        순수 키보드, 키보드에 자동완성을 끄는 기능임, 기본값은 꺼져 있음.
+        대소문자 검사, 기본값은 꺼져 있음.
+        악센트 검사, 켜면 채점할 때 악센트까지 맞아야 됨, 기본값은 꺼져 있음.
+
+통계 화면
+    정답률
+    정답 수 / 문제 수
+    정답과 내가 쓴 답, 맞았는지 틀렸는지.

@@ -1,0 +1,97 @@
+.vocabulary-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.vocabulary-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.vocabulary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vocabulary-input {
+  font-size: 15px;
+  padding: 12px;
+  border: 2px solid #bdc3c7;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.2s;
+  min-height: 44px;
+}
+
+.vocabulary-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.vocabulary-input.correct {
+  background: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.vocabulary-input.incorrect {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.vocabulary-input:disabled {
+  cursor: not-allowed;
+}
+
+.vocabulary-answer {
+  font-size: 14px;
+  color: #7f8c8d;
+  text-align: center;
+  font-weight: 600;
+}
+
+.next-button {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 44px;
+}
+
+.next-button:hover {
+  background: #229954;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .vocabulary-inputs {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
+  .vocabulary-input {
+    font-size: 14px;
+    padding: 10px;
+    min-height: 44px;
+  }
+
+  .next-button {
+    padding: 12px 24px;
+    font-size: 14px;
+    min-height: 44px;
+  }
+}
+

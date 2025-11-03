@@ -1,0 +1,89 @@
+{
+  "app": {
+    "title": "French Learning",
+    "concepts": {
+      "time": "Time Dictation",
+      "vocabulary": "Vocabulary Memorization",
+      "articles": "Article Fill-in",
+      "word": "Word Dictation"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "languageOptions": {
+      "en": "English",
+      "ko": "Korean",
+      "zh-TW": "Traditional Chinese"
+    },
+    "skillImprovement": {
+      "title": "Skill Improvement",
+      "pureKeyboard": "Pure Keyboard",
+      "pureKeyboardDesc": "Disable auto-completion",
+      "caseSensitive": "Case Sensitive",
+      "caseSensitiveDesc": "Check capitalization",
+      "accentSensitive": "Accent Sensitive",
+      "accentSensitiveDesc": "Check accents"
+    }
+  },
+  "common": {
+    "check": "Check Answer",
+    "next": "Next",
+    "previous": "Previous",
+    "stop": "Stop",
+    "restart": "Restart",
+    "replay": "Replay",
+    "statistics": "Statistics",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "answer": "Answer"
+  },
+  "timeDictation": {
+    "title": "Time Dictation",
+    "instruction": "Listen to the time and write it in 24-hour format (4 digits)"
+  },
+  "vocabulary": {
+    "title": "Vocabulary Memorization",
+    "instruction": "Write down all items from memory",
+    "months": "Months",
+    "seasons": "Seasons",
+    "days": "Days of the Week"
+  },
+  "articles": {
+    "title": "Article Fill-in",
+    "instruction": "Fill in the missing articles",
+    "hint": "Tap a word to see gender information",
+    "explanation": "Explanation",
+    "masculine": "Masculine",
+    "feminine": "Feminine",
+    "both": "Masculine/Feminine"
+  },
+  "wordDictation": {
+    "title": "Word Dictation",
+    "instruction": "Listen and write the missing words"
+  },
+  "statistics": {
+    "title": "Statistics",
+    "total": "Total",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "accuracy": "Accuracy",
+    "history": "History",
+    "question": "Question",
+    "yourAnswer": "Your Answer"
+  },
+  "common": {
+    "check": "Check Answer",
+    "next": "Next",
+    "previous": "Previous",
+    "stop": "Stop",
+    "restart": "Restart",
+    "replay": "Replay",
+    "statistics": "Statistics",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "answer": "Answer",
+    "close": "Close"
+  }
+}
+
