@@ -4,7 +4,7 @@ import { SettingsProvider, useSettings } from './context/SettingsContext'
 import { Home } from './components/Home'
 import { Settings } from './components/Settings'
 import { Statistics } from './components/Statistics'
-import { SwipeableCard } from './components/SwipeableCard'
+
 import { TimeDictation } from './components/concepts/TimeDictation'
 import { VocabularyMemorization } from './components/concepts/VocabularyMemorization'
 import { ArticleFill } from './components/concepts/ArticleFill'
@@ -33,8 +33,6 @@ const AppContent: React.FC = () => {
   const [currentConcept, setCurrentConcept] = useState<string | null>(null)
   const [showSettings, setShowSettings] = useState(false)
   const [stats, setStats] = useState<GameStats>({ total: 0, correct: 0, incorrect: 0, history: [] })
-  const [currentProblemIndex, setCurrentProblemIndex] = useState(0)
-  const [canSwipe, setCanSwipe] = useState(false)
 
   useEffect(() => {
     i18n.changeLanguage(settings.language)
@@ -44,8 +42,6 @@ const AppContent: React.FC = () => {
     setCurrentConcept(concept)
     setCurrentView('game')
     setStats({ total: 0, correct: 0, incorrect: 0, history: [] })
-    setCurrentProblemIndex(0)
-    setCanSwipe(false)
   }
 
   const handleStop = () => {
@@ -58,8 +54,6 @@ const AppContent: React.FC = () => {
 
   const handleRestart = () => {
     setStats({ total: 0, correct: 0, incorrect: 0, history: [] })
-    setCurrentProblemIndex(0)
-    setCanSwipe(false)
     if (currentConcept) {
       setCurrentView('game')
     } else {
@@ -82,7 +76,6 @@ const AppContent: React.FC = () => {
         },
       ],
     }))
-    setCanSwipe(true)
   }
 
   const renderConcept = () => {
@@ -127,15 +120,7 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="app-game">
-      <SwipeableCard
-        currentIndex={currentProblemIndex}
-        totalCards={Infinity}
-        onNext={() => setCurrentProblemIndex((prev) => prev + 1)}
-        onPrevious={() => setCurrentProblemIndex((prev) => Math.max(0, prev - 1))}
-        canSwipe={canSwipe}
-      >
-        {renderConcept()}
-      </SwipeableCard>
+      {renderConcept()}
       {showSettings && <Settings onClose={() => setShowSettings(false)} />}
     </div>
   )

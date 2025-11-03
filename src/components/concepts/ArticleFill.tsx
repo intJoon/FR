@@ -162,6 +162,7 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
   }
 
   const handleCheck = () => {
+    if (showAnswer) return
     let allCorrect = true
     const userAnswers: string[] = []
     const correctAnswers: string[] = []
@@ -209,7 +210,7 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
               value={userInput}
               onChange={(e) => handleInputChange(blankIndex, e.target.value)}
               placeholder="___"
-              autoComplete={settings.pureKeyboard ? 'off' : 'on'}
+              autoComplete="off"
               autoCapitalize="off"
               autoCorrect="off"
               spellCheck={false}
@@ -259,6 +260,14 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
     return elements
   }
 
+  const allCorrect = showAnswer
+    ? currentSentence.blanks.every((blank, _idx) => compareText(inputs[_idx] || '', blank.answer, settings))
+    : false
+
+  const answerText = showAnswer
+    ? currentSentence.blanks.map((blank, _idx) => `${blank.answer}: ${getExplanation(blank.explanation)}`).join(' | ')
+    : undefined
+
   return (
     <QuestionCard
       title={t('articles.title')}
@@ -266,26 +275,12 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
       onCheck={handleCheck}
       onStop={onStop || (() => {})}
       showAnswer={showAnswer}
-      answer={
-        showAnswer
-          ? currentSentence.blanks.map((blank, idx) => {
-              const isCorrect = compareText(inputs[idx] || '', blank.answer, settings)
-              return (
-                <div key={idx} className={`article-answer ${isCorrect ? 'correct-item' : 'incorrect-item'}`}>
-                  <strong>{blank.answer}</strong>: {getExplanation(blank.explanation)}
-                </div>
-              )
-            })
-          : undefined
-      }
+      answer={answerText}
+      isCorrect={allCorrect}
+      onNext={handleNext}
     >
       <div className="article-container">
         <div className="sentence-display">{renderSentence()}</div>
-        {showAnswer && (
-          <button className="next-button" onClick={handleNext}>
-            {t('common.next')}
-          </button>
-        )}
       </div>
     </QuestionCard>
   )

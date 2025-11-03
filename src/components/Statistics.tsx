@@ -34,9 +34,6 @@ export const Statistics: React.FC<StatisticsProps> = ({
       <div className="statistics-modal">
         <div className="statistics-header">
           <h2>{t('statistics.title')}</h2>
-          <button className="close-button" onClick={onClose}>
-            ×
-          </button>
         </div>
 
         <div className="statistics-content">

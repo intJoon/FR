@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 
 interface Settings {
   language: 'en' | 'ko' | 'zh-TW'
-  pureKeyboard: boolean
   caseSensitive: boolean
   accentSensitive: boolean
 }
@@ -14,7 +13,6 @@ interface SettingsContextType {
 
 const defaultSettings: Settings = {
   language: 'en',
-  pureKeyboard: false,
   caseSensitive: false,
   accentSensitive: false,
 }
@@ -24,7 +22,12 @@ const SettingsContext = createContext<SettingsContextType | undefined>(undefined
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [settings, setSettings] = useState<Settings>(() => {
     const saved = localStorage.getItem('french-learning-settings')
-    return saved ? { ...defaultSettings, ...JSON.parse(saved) } : defaultSettings
+    if (saved) {
+      const parsed = JSON.parse(saved)
+      const { pureKeyboard, ...rest } = parsed
+      return { ...defaultSettings, ...rest }
+    }
+    return defaultSettings
   })
 
   useEffect(() => {

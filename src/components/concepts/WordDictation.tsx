@@ -50,6 +50,7 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   }
 
   const handleCheck = () => {
+    if (showAnswer) return
     let allCorrect = true
     const userAnswers: string[] = []
     const correctAnswers: string[] = []
@@ -103,7 +104,7 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
             value={userInput}
             onChange={(e) => handleInputChange(blankIndex, e.target.value)}
             placeholder="___"
-            autoComplete={settings.pureKeyboard ? 'off' : 'on'}
+            autoComplete="off"
             autoCapitalize="off"
             autoCorrect="off"
             spellCheck={false}
@@ -119,6 +120,16 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
     return elements
   }
 
+  const allCorrect = showAnswer
+    ? currentSentence.blanks.every((blank, idx) =>
+        blank.answers.some((answer) => compareText(inputs[idx] || '', answer, settings))
+      )
+    : false
+
+  const answerText = showAnswer
+    ? currentSentence.blanks.map((blank) => blank.answers.join(' / ')).join(' | ')
+    : undefined
+
   return (
     <QuestionCard
       title={t('wordDictation.title')}
@@ -126,29 +137,15 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
       onCheck={handleCheck}
       onStop={onStop || (() => {})}
       showAnswer={showAnswer}
-      answer={
-        showAnswer
-          ? currentSentence.blanks.map((blank, idx) => {
-              const isCorrect = blank.answers.some((answer) => compareText(inputs[idx] || '', answer, settings))
-              return (
-                <div key={idx} className={`word-answer ${isCorrect ? 'correct-item' : 'incorrect-item'}`}>
-                  {blank.answers.join(' / ')}
-                </div>
-              )
-            })
-          : undefined
-      }
+      answer={answerText}
+      isCorrect={allCorrect}
       showReplay={true}
       onReplay={handleReplay}
+      onNext={handleNext}
     >
       <div className="word-dictation-container">
         <div className="sentence-display">{renderSentence()}</div>
         {isPlaying && <div className="playing-indicator">Playing...</div>}
-        {showAnswer && (
-          <button className="next-button" onClick={handleNext}>
-            {t('common.next')}
-          </button>
-        )}
       </div>
     </QuestionCard>
   )

@@ -28,18 +28,6 @@ export const Settings: React.FC<SettingsProps> = ({ onClose }) => {
               <label className="toggle-item">
                 <input
                   type="checkbox"
-                  checked={settings.pureKeyboard}
-                  onChange={(e) => updateSettings({ pureKeyboard: e.target.checked })}
-                />
-                <div>
-                  <strong>{t('settings.skillImprovement.pureKeyboard')}</strong>
-                  <p>{t('settings.skillImprovement.pureKeyboardDesc')}</p>
-                </div>
-              </label>
-
-              <label className="toggle-item">
-                <input
-                  type="checkbox"
                   checked={settings.caseSensitive}
                   onChange={(e) => updateSettings({ caseSensitive: e.target.checked })}
                 />

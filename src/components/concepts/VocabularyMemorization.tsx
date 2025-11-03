@@ -20,7 +20,6 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
   const [category, setCategory] = useState<Category>('months')
   const [inputs, setInputs] = useState<Record<string, string>>({})
   const [showAnswer, setShowAnswer] = useState(false)
-  const [correctCount, setCorrectCount] = useState(0)
   const [_problemIndex, setProblemIndex] = useState(0)
 
   const getData = () => {
@@ -41,25 +40,32 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
   }
 
   const handleCheck = () => {
-    let correct = 0
+    if (showAnswer) return
+    let allCorrect = true
     const userAnswers: string[] = []
     const correctAnswers: string[] = []
     data.forEach((item, index) => {
       const userInput = inputs[index] || ''
       userAnswers.push(userInput)
       correctAnswers.push(item)
-      if (compareText(userInput, item, settings)) {
-        correct++
+      if (!compareText(userInput, item, settings)) {
+        allCorrect = false
       }
     })
-    setCorrectCount(correct)
     setShowAnswer(true)
-    const allCorrect = correct === data.length
     const questionText = getCategoryTitle()
     const userAnswerText = userAnswers.join(', ')
     const correctAnswerText = correctAnswers.join(', ')
     onAnswerChecked?.(allCorrect, questionText, userAnswerText, correctAnswerText)
   }
+
+  const allCorrect = showAnswer
+    ? data.every((item, index) => compareText(inputs[index] || '', item, settings))
+    : false
+
+  const answerText = showAnswer
+    ? data.map((item, index) => `${index + 1}. ${item}`).join(' | ')
+    : undefined
 
   const handleNext = () => {
     const categories: Category[] = ['months', 'seasons', 'days']
@@ -96,17 +102,15 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
       onCheck={handleCheck}
       onStop={onStop || (() => {})}
       showAnswer={showAnswer}
-      answer={
-        showAnswer
-          ? `${t('common.correct')}: ${correctCount}/${data.length}`
-          : undefined
-      }
+      answer={answerText}
+      isCorrect={allCorrect}
+      onNext={handleNext}
     >
       <div className="vocabulary-container">
         <div className="vocabulary-inputs">
-          {data.map((item, index) => {
+          {data.map((_item, index) => {
             const userInput = inputs[index] || ''
-            const isCorrect = showAnswer ? compareText(userInput, item, settings) : null
+            const isCorrect = showAnswer ? compareText(userInput, _item, settings) : null
             return (
               <div key={index} className="vocabulary-item">
                 <input
@@ -115,24 +119,16 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
                   value={userInput}
                   onChange={(e) => handleInputChange(index, e.target.value)}
                   placeholder={`${index + 1}`}
-                  autoComplete={settings.pureKeyboard ? 'off' : 'on'}
+                  autoComplete="off"
                   autoCapitalize="off"
                   autoCorrect="off"
                   spellCheck={false}
                   disabled={showAnswer}
                 />
-                {showAnswer && (
-                  <span className="vocabulary-answer">{item}</span>
-                )}
               </div>
             )
           })}
         </div>
-        {showAnswer && (
-          <button className="next-button" onClick={handleNext}>
-            {t('common.next')}
-          </button>
-        )}
       </div>
     </QuestionCard>
   )

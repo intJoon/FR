@@ -17,14 +17,14 @@
 
 .question-header h2 {
   margin: 0 0 8px 0;
-  font-size: 20px;
+  font-size: 24px;
   color: #2c3e50;
   font-weight: 600;
 }
 
 .instruction {
   color: #7f8c8d;
-  font-size: 14px;
+  font-size: 16px;
   margin: 0 0 16px 0;
   line-height: 1.5;
 }
@@ -69,18 +69,29 @@
 }
 
 .check-button,
-.replay-button {
+.replay-button,
+.next-button {
   background: #3498db;
   color: white;
   border: none;
-  padding: 14px 28px;
+  padding: 16px 32px;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-  min-height: 44px;
+  min-height: 52px;
+}
+
+.question-footer .next-button {
+  background: #27ae60;
+}
+
+.question-footer .next-button:hover {
+  background: #229954;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
 }
 
 .check-button:hover,
@@ -92,12 +103,17 @@
 
 .answer-section {
   width: 100%;
+  margin-bottom: 24px;
+}
+
+.answer-section .answer {
+  width: 100%;
 }
 
 .answer {
-  padding: 16px;
+  padding: 20px;
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .answer.correct {
@@ -125,7 +141,7 @@
   }
 
   .question-header h2 {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .instruction {
@@ -164,7 +180,7 @@
   }
 
   .question-header h2 {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .instruction {

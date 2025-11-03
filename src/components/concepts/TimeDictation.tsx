@@ -27,6 +27,7 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
   }, [currentProblem])
 
   const handleCheck = () => {
+    if (showAnswer) return
     const correct = compareText(input, currentProblem.answer, settings)
     setIsCorrect(correct)
     setShowAnswer(true)
@@ -53,30 +54,26 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
       onCheck={handleCheck}
       onStop={onStop || (() => {})}
       showAnswer={showAnswer}
-      answer={currentProblem.answer}
+      answer={showAnswer ? currentProblem.answer : undefined}
       isCorrect={isCorrect}
       showReplay={true}
       onReplay={handleReplay}
+      onNext={handleNext}
     >
       <div className="time-dictation-container">
         <input
           type="text"
-          className="time-input"
+          className={`time-input ${showAnswer ? (isCorrect ? 'correct' : 'incorrect') : ''}`}
           value={input}
           onChange={(e) => setInput(e.target.value.replace(/\D/g, '').slice(0, 4))}
           placeholder="0000"
           maxLength={4}
-          autoComplete={settings.pureKeyboard ? 'off' : 'on'}
+          autoComplete="off"
           autoCapitalize="off"
           autoCorrect="off"
           spellCheck={false}
           disabled={showAnswer}
         />
-        {showAnswer && (
-          <button className="next-button" onClick={handleNext}>
-            {t('common.next')}
-          </button>
-        )}
       </div>
     </QuestionCard>
   )

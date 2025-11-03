@@ -13,6 +13,7 @@ interface QuestionCardProps {
   isCorrect?: boolean
   showReplay?: boolean
   onReplay?: () => void
+  onNext?: () => void
 }
 
 export const QuestionCard: React.FC<QuestionCardProps> = ({
@@ -26,6 +27,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   isCorrect,
   showReplay = false,
   onReplay,
+  onNext,
 }) => {
   const { t } = useTranslation()
 
@@ -39,7 +41,17 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         {instruction && <p className="instruction">{instruction}</p>}
       </div>
 
-      <div className="question-content">{children}</div>
+      <div className="question-content">
+        {children}
+      </div>
+
+      {showAnswer && answer && (
+        <div className="answer-section">
+          <div className={`answer ${isCorrect !== undefined ? (isCorrect ? 'correct' : 'incorrect') : ''}`}>
+            <strong>{t('common.answer')}:</strong> {answer}
+          </div>
+        </div>
+      )}
 
       <div className="question-footer">
         {showReplay && onReplay && (
@@ -47,18 +59,15 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             {t('common.replay')}
           </button>
         )}
-        {!showAnswer ? (
+        {!showAnswer && (
           <button className="check-button" onClick={onCheck}>
             {t('common.check')}
           </button>
-        ) : (
-          <div className="answer-section">
-            {answer && (
-              <div className={`answer ${isCorrect ? 'correct' : 'incorrect'}`}>
-                <strong>{t('common.answer')}:</strong> {answer}
-              </div>
-            )}
-          </div>
+        )}
+        {showAnswer && onNext && (
+          <button className="next-button" onClick={onNext}>
+            {t('common.next')}
+          </button>
         )}
       </div>
     </div>
