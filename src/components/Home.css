@@ -6,6 +6,14 @@
   padding-bottom: max(24px, calc(24px + env(safe-area-inset-bottom)));
   padding-left: max(24px, calc(24px + env(safe-area-inset-left)));
   padding-right: max(24px, calc(24px + env(safe-area-inset-right)));
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .home-header {
