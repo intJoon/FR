@@ -183,14 +183,60 @@
   font-size: 14px;
 }
 
+.number-input-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.number-button {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #bdc3c7;
+  border-radius: 8px;
+  background: white;
+  color: #2c3e50;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+
+.number-button:hover:not(:disabled) {
+  border-color: #3498db;
+  background: #ecf0f1;
+  color: #3498db;
+}
+
+.number-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.number-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .number-input {
-  width: 80px;
+  width: 60px;
   padding: 8px 12px;
   border: 2px solid #bdc3c7;
   border-radius: 8px;
   font-size: 16px;
   text-align: center;
   transition: all 0.2s;
+  -moz-appearance: textfield;
+}
+
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .number-input:focus {
@@ -200,10 +246,17 @@
 }
 
 @media (max-width: 768px) {
+  .settings-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
   .settings-modal {
     margin: 0;
     border-radius: 20px 20px 0 0;
-    max-height: 100vh;
+    max-height: calc(100vh - env(safe-area-inset-bottom));
+    max-height: calc(100dvh - env(safe-area-inset-bottom));
+    width: 100%;
   }
 
   .settings-header {
@@ -216,6 +269,7 @@
 
   .settings-content {
     padding: 20px;
+    padding-bottom: max(20px, calc(20px + env(safe-area-inset-bottom)));
   }
 
   .settings-section h3 {

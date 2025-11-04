@@ -281,23 +281,6 @@ export const articleSentences: ArticleSentence[] = [
     ],
   },
   {
-    sentence: 'Elle porte ___ robe rouge et ___ chapeau noir.',
-    blanks: [
-      {
-        index: 0,
-        answer: 'une',
-        gender: 'f',
-        explanation: 'une robe (unspecific) - indefinite article before adjective + noun',
-      },
-      {
-        index: 1,
-        answer: 'un',
-        gender: 'm',
-        explanation: 'un chapeau (unspecific) - indefinite article before adjective + noun',
-      },
-    ],
-  },
-  {
     sentence: 'Je lis ___ livre intéressant et ___ magazine.',
     blanks: [
       {
@@ -798,23 +781,6 @@ export const articleSentences: ArticleSentence[] = [
         answer: 'le',
         gender: 'm',
         explanation: 'le ciel (specific) - definite article for specific natural element',
-      },
-    ],
-  },
-  {
-    sentence: 'Il habite dans ___ vieille maison avec ___ jardin.',
-    blanks: [
-      {
-        index: 0,
-        answer: 'une',
-        gender: 'f',
-        explanation: 'une maison (with adjective) - indefinite article before adjective + noun',
-      },
-      {
-        index: 1,
-        answer: 'un',
-        gender: 'm',
-        explanation: 'un jardin (unspecific) - indefinite article for unspecified noun',
       },
     ],
   },
@@ -1577,13 +1543,188 @@ export const articleSentences: ArticleSentence[] = [
     ],
   },
   {
-    sentence: 'Il fait ___ froid aujourd\'hui.',
+    sentence: 'Il fait froid ___ aujourd\'hui.',
     blanks: [
       {
         index: 0,
         answer: '',
         gender: null,
-        explanation: 'faire froid (no article) - weather expressions don\'t take articles',
+        explanation: 'no article needed - weather expressions with "Il fait" do not require an article',
+      },
+    ],
+  },
+  {
+    sentence: 'J\'ai faim ___ maintenant.',
+    blanks: [
+      {
+        index: 0,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - "avoir faim/soif" expressions do not require an article',
+      },
+    ],
+  },
+  {
+    sentence: 'Il est midi ___ maintenant.',
+    blanks: [
+      {
+        index: 0,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - time expressions "Il est midi/minuit" do not require an article',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle est médecin ___ et il est ingénieur ___ .',
+    blanks: [
+      {
+        index: 0,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - professions without adjective do not require an article',
+      },
+      {
+        index: 1,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - professions without adjective do not require an article',
+      },
+    ],
+  },
+  {
+    sentence: 'C\'est à moi ___ , pas à toi ___ .',
+    blanks: [
+      {
+        index: 0,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - "C\'est à moi/toi" does not require an article',
+      },
+      {
+        index: 1,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - "C\'est à moi/toi" does not require an article',
+      },
+    ],
+  },
+  {
+    sentence: 'Il manque ___ de ___ patience.',
+    blanks: [
+      {
+        index: 0,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - "manquer de" does not require an article before "de"',
+      },
+      {
+        index: 1,
+        answer: 'de la',
+        gender: 'f',
+        explanation: 'de la patience (partitive) - partitive article after "de"',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous avons besoin ___ de ___ nouvelles chaises.',
+    blanks: [
+      {
+        index: 0,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - "avoir besoin de" does not require an article before "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'besoin de nouvelles chaises - no article after "de" in "avoir besoin de"',
+      },
+    ],
+  },
+  {
+    sentence: 'Il va ___ à ___ école tous les jours.',
+    blanks: [
+      {
+        index: 0,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - "aller à" does not require an article before "à"',
+      },
+      {
+        index: 1,
+        answer: 'l\'',
+        gender: 'f',
+        explanation: 'à l\'école (specific) - definite article after "à"',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle vient ___ de ___ France.',
+    blanks: [
+      {
+        index: 0,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - "venir de" does not require an article before "de"',
+      },
+      {
+        index: 1,
+        answer: 'de la',
+        gender: 'f',
+        explanation: 'de la France (country) - definite article for countries (feminine)',
+      },
+    ],
+  },
+  {
+    sentence: 'Il parle ___ sans ___ arrêt.',
+    blanks: [
+      {
+        index: 0,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - "parler sans" does not require an article before "sans"',
+      },
+      {
+        index: 1,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - "sans arrêt" is a fixed expression without article',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous parlons ___ de ___ travail.',
+    blanks: [
+      {
+        index: 0,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - "parler de" does not require an article before "de"',
+      },
+      {
+        index: 1,
+        answer: 'du',
+        gender: 'm',
+        explanation: 'du travail (specific) - definite article after "de"',
+      },
+    ],
+  },
+  {
+    sentence: 'Il vit ___ à ___ Paris depuis cinq ans.',
+    blanks: [
+      {
+        index: 0,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - "vivre à" does not require an article before "à"',
+      },
+      {
+        index: 1,
+        answer: '',
+        gender: null,
+        explanation: 'no article needed - city names do not require an article',
       },
     ],
   },
@@ -1601,6 +1742,1675 @@ export const articleSentences: ArticleSentence[] = [
         answer: 'le',
         gender: 'm',
         explanation: 'le parc (specific) - definite article for specific place',
+      },
+    ],
+  },
+
+  // ===== 날씨 관련 (구름의 양 등 상세한 묘사) =====
+  {
+    sentence: 'Il y a ___ nuages gris dans ___ ciel aujourd\'hui.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'des',
+        gender: 'm',
+        explanation: 'des nuages (plural) - indefinite article for plural countable nouns',
+      },
+      {
+        index: 1,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le ciel (specific) - definite article for specific natural element',
+      },
+    ],
+  },
+  {
+    sentence: '___ soleil brille à travers ___ nuages légers.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'Le',
+        gender: 'm',
+        explanation: 'Le soleil (specific) - definite article for specific natural element',
+      },
+      {
+        index: 1,
+        answer: 'les',
+        gender: 'm',
+        explanation: 'les nuages (specific) - definite article for specific natural elements',
+      },
+    ],
+  },
+  {
+    sentence: '___ vent souffle fort et ___ pluie commence à tomber.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'Le',
+        gender: 'm',
+        explanation: 'Le vent (specific) - definite article for specific natural element',
+      },
+      {
+        index: 1,
+        answer: 'la',
+        gender: 'f',
+        explanation: 'la pluie (specific) - definite article for specific natural element',
+      },
+    ],
+  },
+  {
+    sentence: 'Il y a ___ arc-en-ciel magnifique après ___ orage.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un arc-en-ciel (unspecific) - indefinite article for countable noun',
+      },
+      {
+        index: 1,
+        answer: 'l\'',
+        gender: 'm',
+        explanation: 'l\'orage (specific) - definite article before vowel',
+      },
+    ],
+  },
+  {
+    sentence: '___ neige tombe doucement sur ___ montagnes.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'La',
+        gender: 'f',
+        explanation: 'La neige (specific) - definite article for specific natural element',
+      },
+      {
+        index: 1,
+        answer: 'les',
+        gender: 'f',
+        explanation: 'les montagnes (specific) - definite article for specific natural elements',
+      },
+    ],
+  },
+  {
+    sentence: '___ brouillard épais recouvre ___ vallée ce matin.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'Le',
+        gender: 'm',
+        explanation: 'Le brouillard (specific) - definite article for specific natural element',
+      },
+      {
+        index: 1,
+        answer: 'la',
+        gender: 'f',
+        explanation: 'la vallée (specific) - definite article for specific place',
+      },
+    ],
+  },
+  {
+    sentence: '___ éclairs illuminent ___ ciel sombre.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'Les',
+        gender: 'm',
+        explanation: 'Les éclairs (plural) - definite article for plural natural elements',
+      },
+      {
+        index: 1,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le ciel (specific) - definite article for specific natural element',
+      },
+    ],
+  },
+  {
+    sentence: '___ température baisse et ___ gel apparaît sur ___ routes.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'La',
+        gender: 'f',
+        explanation: 'La température (specific) - definite article for specific natural element',
+      },
+      {
+        index: 1,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le gel (specific) - definite article for specific natural element',
+      },
+      {
+        index: 2,
+        answer: 'les',
+        gender: 'f',
+        explanation: 'les routes (specific) - definite article for specific places',
+      },
+    ],
+  },
+  {
+    sentence: 'Il y a ___ éclaircie entre ___ nuages sombres.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une éclaircie (unspecific) - indefinite article for countable noun',
+      },
+      {
+        index: 1,
+        answer: 'les',
+        gender: 'm',
+        explanation: 'les nuages (specific) - definite article for specific natural elements',
+      },
+    ],
+  },
+  {
+    sentence: '___ soleil brille faiblement derrière ___ nuages épais.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'Le',
+        gender: 'm',
+        explanation: 'Le soleil (specific) - definite article for specific natural element',
+      },
+      {
+        index: 1,
+        answer: 'les',
+        gender: 'm',
+        explanation: 'les nuages (specific) - definite article for specific natural elements',
+      },
+    ],
+  },
+
+  // ===== 습관 관련 (매일의 루틴 등) =====
+  {
+    sentence: 'Chaque matin, je prends ___ café et ___ croissant.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un café (habit) - indefinite article for habitual action',
+      },
+      {
+        index: 1,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un croissant (habit) - indefinite article for habitual action',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle lit ___ journal pendant ___ petit-déjeuner.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le journal (habit) - definite article for habitual action',
+      },
+      {
+        index: 1,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le petit-déjeuner (habit) - definite article for meal names',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous faisons ___ sport ___ samedi matin.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'du',
+        gender: 'm',
+        explanation: 'du sport (habit) - partitive article for habitual activity',
+      },
+      {
+        index: 1,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le samedi (habit) - definite article for days of week indicating habits',
+      },
+    ],
+  },
+  {
+    sentence: 'Il écoute ___ radio en conduisant ___ voiture.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'la',
+        gender: 'f',
+        explanation: 'la radio (habit) - definite article for habitual action',
+      },
+      {
+        index: 1,
+        answer: 'la',
+        gender: 'f',
+        explanation: 'la voiture (specific) - definite article for specific item',
+      },
+    ],
+  },
+  {
+    sentence: 'Tous les soirs, elle regarde ___ télévision avant ___ dîner.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'la',
+        gender: 'f',
+        explanation: 'la télévision (habit) - definite article for habitual action',
+      },
+      {
+        index: 1,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le dîner (habit) - definite article for meal names',
+      },
+    ],
+  },
+  {
+    sentence: 'Je me promène dans ___ parc ___ dimanche après-midi.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le parc (specific) - definite article for specific place',
+      },
+      {
+        index: 1,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le dimanche (habit) - definite article for days of week indicating habits',
+      },
+    ],
+  },
+  {
+    sentence: 'Tu bois ___ thé vert ___ matin pour ___ énergie.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'du',
+        gender: 'm',
+        explanation: 'du thé (habit) - partitive article for habitual action',
+      },
+      {
+        index: 1,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le matin (habit) - definite article for time expressions indicating habits',
+      },
+      {
+        index: 2,
+        answer: 'l\'',
+        gender: 'f',
+        explanation: 'l\'énergie (specific) - definite article before vowel',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle fait ___ yoga ___ semaine pour rester en forme.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'du',
+        gender: 'm',
+        explanation: 'du yoga (habit) - partitive article for habitual activity',
+      },
+      {
+        index: 1,
+        answer: 'la',
+        gender: 'f',
+        explanation: 'la semaine (habit) - definite article for time expressions indicating habits',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous mangeons ___ restaurant ___ vendredi soir.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'au',
+        gender: 'm',
+        explanation: 'au restaurant (habit) - contraction of "à le" to "au" for habitual action',
+      },
+      {
+        index: 1,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le vendredi (habit) - definite article for days of week indicating habits',
+      },
+    ],
+  },
+  {
+    sentence: 'Il lit ___ livre avant ___ coucher chaque nuit.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un livre (habit) - indefinite article for habitual action',
+      },
+      {
+        index: 1,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le coucher (habit) - definite article for time expressions indicating habits',
+      },
+    ],
+  },
+
+  // ===== 성격 관련 (재능이나 능력, 현재상황 등) =====
+  {
+    sentence: 'Elle a ___ talent exceptionnel pour ___ musique.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un talent (ability) - indefinite article before adjective + noun',
+      },
+      {
+        index: 1,
+        answer: 'la',
+        gender: 'f',
+        explanation: 'la musique (specific) - definite article for specific activity',
+      },
+    ],
+  },
+  {
+    sentence: 'Il possède ___ grande capacité à résoudre ___ problèmes complexes.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une capacité (ability) - indefinite article before adjective + noun',
+      },
+      {
+        index: 1,
+        answer: 'les',
+        gender: 'm',
+        explanation: 'les problèmes (specific) - definite article for specific concepts',
+      },
+    ],
+  },
+  {
+    sentence: '___ patience est ___ qualité importante dans ___ vie.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'La',
+        gender: 'f',
+        explanation: 'La patience (personality trait) - definite article for abstract concepts',
+      },
+      {
+        index: 1,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une qualité (personality trait) - indefinite article before adjective + noun',
+      },
+      {
+        index: 2,
+        answer: 'la',
+        gender: 'f',
+        explanation: 'la vie (general) - definite article for general concepts',
+      },
+    ],
+  },
+  {
+    sentence: 'Il montre ___ courage remarquable face à ___ difficultés.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un courage (personality trait) - indefinite article before adjective + noun',
+      },
+      {
+        index: 1,
+        answer: 'les',
+        gender: 'f',
+        explanation: 'les difficultés (specific) - definite article for specific concepts',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle a ___ confiance en ses capacités.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une confiance (personality trait) - indefinite article for abstract concept',
+      },
+    ],
+  },
+  {
+    sentence: '___ optimisme est ___ attitude positive devant ___ situations difficiles.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'L\'',
+        gender: 'm',
+        explanation: 'L\'optimisme (personality trait) - definite article before vowel',
+      },
+      {
+        index: 1,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une attitude (personality trait) - indefinite article before adjective + noun',
+      },
+      {
+        index: 2,
+        answer: 'les',
+        gender: 'f',
+        explanation: 'les situations (specific) - definite article for specific concepts',
+      },
+    ],
+  },
+  {
+    sentence: 'Il fait preuve de ___ détermination impressionnante pour atteindre ses objectifs.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une détermination (personality trait) - indefinite article before adjective + noun',
+      },
+    ],
+  },
+  {
+    sentence: '___ créativité est ___ atout précieux dans ___ travail artistique.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'La',
+        gender: 'f',
+        explanation: 'La créativité (personality trait) - definite article for abstract concepts',
+      },
+      {
+        index: 1,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un atout (personality trait) - indefinite article before adjective + noun',
+      },
+      {
+        index: 2,
+        answer: 'le',
+        gender: 'm',
+        explanation: 'le travail (specific) - definite article for specific activity',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle a ___ sens ___ l\'humour et ___ intelligence remarquable.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un sens (personality trait) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'sens de l\'humour (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une intelligence (personality trait) - indefinite article before adjective + noun',
+      },
+    ],
+  },
+  {
+    sentence: '___ honnêteté et ___ sincérité sont ___ valeurs importantes.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'L\'',
+        gender: 'f',
+        explanation: 'L\'honnêteté (personality trait) - definite article before vowel',
+      },
+      {
+        index: 1,
+        answer: 'la',
+        gender: 'f',
+        explanation: 'la sincérité (personality trait) - definite article for abstract concepts',
+      },
+      {
+        index: 2,
+        answer: 'des',
+        gender: 'f',
+        explanation: 'des valeurs (specific) - indefinite article for specific concepts',
+      },
+    ],
+  },
+
+  // ===== 양사 관련 (양사+관사->관사=de/d') =====
+  {
+    sentence: 'Je veux beaucoup ___ café et peu ___ sucre.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'beaucoup de café (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'peu de sucre (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Il mange plus ___ fruits et moins ___ bonbons.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'plus de fruits (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'moins de bonbons (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous avons autant ___ légumes que ___ viande.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'autant de légumes (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'autant de viande (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle boit un peu ___ thé et trop ___ café.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'un peu de thé (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'trop de café (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Il achète assez ___ pain et beaucoup ___ fromage.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'assez de pain (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'beaucoup de fromage (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Tu dépenses trop ___ argent et peu ___ temps pour ___ études.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'd\'',
+        gender: 'm',
+        explanation: 'trop d\'argent (quantity + de) - after quantity expressions, use "de" instead of article (before vowel)',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'peu de temps (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 2,
+        answer: 'les',
+        gender: 'f',
+        explanation: 'les études (specific) - definite article for specific activity',
+      },
+    ],
+  },
+  {
+    sentence: 'Il y a peu ___ soleil et beaucoup ___ nuages aujourd\'hui.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'peu de soleil (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'beaucoup de nuages (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle fait beaucoup ___ sport et peu ___ exercice.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'beaucoup de sport (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'd\'',
+        gender: 'm',
+        explanation: 'peu d\'exercice (quantity + de) - after quantity expressions, use "de" instead of article (before vowel)',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous avons plus ___ amis et moins ___ problèmes.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'd\'',
+        gender: 'm/f',
+        explanation: 'plus d\'amis (quantity + de) - after quantity expressions, use "de" instead of article (before vowel)',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'moins de problèmes (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Il mange assez ___ salade et trop ___ chocolat.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'assez de salade (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'trop de chocolat (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'J\'achète énormément ___ livres et pas assez ___ temps pour ___ lire.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'énormément de livres (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'pas assez de temps (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 2,
+        answer: 'les',
+        gender: 'm',
+        explanation: 'les lire (specific) - definite article for specific action',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle consomme très peu ___ sucre et beaucoup ___ eau.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'très peu de sucre (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'd\'',
+        gender: 'f',
+        explanation: 'beaucoup d\'eau (quantity + de) - after quantity expressions, use "de" instead of article (before vowel)',
+      },
+    ],
+  },
+  {
+    sentence: 'Il passe trop ___ heures devant ___ ordinateur.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'd\'',
+        gender: 'f',
+        explanation: 'trop d\'heures (quantity + de) - after quantity expressions, use "de" instead of article (before vowel)',
+      },
+      {
+        index: 1,
+        answer: 'l\'',
+        gender: 'm',
+        explanation: 'l\'ordinateur (specific) - definite article before vowel',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous avons un peu ___ courage et beaucoup ___ espoir.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'un peu de courage (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'd\'',
+        gender: 'm',
+        explanation: 'beaucoup d\'espoir (quantity + de) - after quantity expressions, use "de" instead of article (before vowel)',
+      },
+    ],
+  },
+  {
+    sentence: 'Tu prends assez ___ vitamines et peu ___ médicaments.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'assez de vitamines (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'peu de médicaments (quantity + de) - after quantity expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Il faut ___ kilo ___ pommes et ___ paquet ___ farine.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un kilo (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'un kilo de pommes (unit + de) - after unit expressions, use "de" instead of article',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un paquet (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'un paquet de farine (unit + de) - after unit expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle achète ___ tasse ___ café et ___ morceau ___ sucre.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une tasse (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'une tasse de café (unit + de) - after unit expressions, use "de" instead of article',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un morceau (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'un morceau de sucre (unit + de) - after unit expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Il prend ___ bouteille ___ eau et ___ boîte ___ conserves.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une bouteille (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 1,
+        answer: 'd\'',
+        gender: 'f',
+        explanation: 'une bouteille d\'eau (unit + de) - after unit expressions, use "de" instead of article (before vowel)',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une boîte (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'une boîte de conserves (unit + de) - after unit expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous avons besoin de ___ tranche ___ pain et ___ verre ___ lait.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une tranche (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'une tranche de pain (unit + de) - after unit expressions, use "de" instead of article',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un verre (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'un verre de lait (unit + de) - after unit expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Tu manges ___ barre ___ chocolat et ___ portion ___ gâteau.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une barre (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'une barre de chocolat (unit + de) - after unit expressions, use "de" instead of article',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une portion (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'une portion de gâteau (unit + de) - after unit expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Il achète ___ litre ___ huile et ___ kilogramme ___ pommes de terre.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un litre (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 1,
+        answer: 'd\'',
+        gender: 'f',
+        explanation: 'un litre d\'huile (unit + de) - after unit expressions, use "de" instead of article (before vowel)',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un kilogramme (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'un kilogramme de pommes de terre (unit + de) - after unit expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle commande ___ pot ___ confiture et ___ sachet ___ thé.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un pot (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'un pot de confiture (unit + de) - after unit expressions, use "de" instead of article',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un sachet (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'un sachet de thé (unit + de) - after unit expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous avons besoin de ___ cuillère ___ miel et ___ goutte ___ citron.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une cuillère (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'une cuillère de miel (unit + de) - after unit expressions, use "de" instead of article',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une goutte (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'une goutte de citron (unit + de) - after unit expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Il prend ___ poignée ___ noix et ___ pointe ___ couteau ___ beurre.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une poignée (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'une poignée de noix (unit + de) - after unit expressions, use "de" instead of article',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une pointe (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'une pointe de couteau (unit + de) - after unit expressions, use "de" instead of article',
+      },
+      {
+        index: 4,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'une pointe de couteau de beurre (unit + de) - after unit expressions, use "de" instead of article',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle utilise ___ cuillère à soupe ___ farine et ___ pincée ___ sel.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une cuillère (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'une cuillère à soupe de farine (unit + de) - after unit expressions, use "de" instead of article',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une pincée (unit) - indefinite article before unit of measurement',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'une pincée de sel (unit + de) - after unit expressions, use "de" instead of article',
+      },
+    ],
+  },
+
+  // ===== 단어 조합 관련 (carte de ..., salle de ..., ...) =====
+  {
+    sentence: 'Il achète ___ carte ___ crédit et ___ billet ___ train.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une carte (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'carte de crédit (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un billet (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'billet de train (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous réservons ___ salle ___ conférence et ___ chambre ___ hôtel.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une salle (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'salle de conférence (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une chambre (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'd\'',
+        gender: 'm',
+        explanation: 'chambre d\'hôtel (compound noun) - "de" connects nouns in compound expressions (before vowel)',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle cherche ___ table ___ cuisine et ___ chaise ___ bureau.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une table (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'table de cuisine (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une chaise (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'chaise de bureau (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Il lit ___ livre ___ histoire et ___ magazine ___ mode.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un livre (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'd\'',
+        gender: 'f',
+        explanation: 'livre d\'histoire (compound noun) - "de" connects nouns in compound expressions (before vowel)',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un magazine (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'magazine de mode (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Tu achètes ___ bouteille ___ vin et ___ verre ___ eau.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une bouteille (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'bouteille de vin (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un verre (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'd\'',
+        gender: 'f',
+        explanation: 'verre d\'eau (compound noun) - "de" connects nouns in compound expressions (before vowel)',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle porte ___ robe ___ soirée et ___ sac à main.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une robe (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'robe de soirée (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un sac (compound noun) - indefinite article before noun with "de"',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous visitons ___ musée ___ art et ___ parc ___ attraction.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un musée (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'd\'',
+        gender: 'm',
+        explanation: 'musée d\'art (compound noun) - "de" connects nouns in compound expressions (before vowel)',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un parc (compound noun) - indefinite article before noun with "d\'"',
+      },
+      {
+        index: 3,
+        answer: 'd\'',
+        gender: 'f',
+        explanation: 'parc d\'attraction (compound noun) - "de" connects nouns in compound expressions (before vowel)',
+      },
+    ],
+  },
+  {
+    sentence: 'Il utilise ___ clé ___ voiture et ___ téléphone portable.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une clé (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'clé de voiture (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un téléphone (compound noun) - indefinite article before noun with adjective',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle regarde ___ émission ___ télévision et ___ film ___ science-fiction.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une émission (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'émission de télévision (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un film (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'film de science-fiction (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Tu achètes ___ ticket ___ métro et ___ carte ___ transport.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un ticket (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'ticket de métro (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une carte (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'carte de transport (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Il visite ___ école ___ musique et ___ cours ___ langue.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une école (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'école de musique (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un cours (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'cours de langue (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle achète ___ boîte ___ médicaments et ___ flacon ___ parfum.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une boîte (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'boîte de médicaments (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un flacon (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'flacon de parfum (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous cherchons ___ appartement ___ deux chambres et ___ garage ___ voiture.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un appartement (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'appartement de deux chambres (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un garage (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'garage de voiture (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Il lit ___ journal ___ informations et ___ article ___ actualité.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un journal (compound noun) - indefinite article before noun with "d\'"',
+      },
+      {
+        index: 1,
+        answer: 'd\'',
+        gender: 'f',
+        explanation: 'journal d\'informations (compound noun) - "de" connects nouns in compound expressions (before vowel)',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un article (compound noun) - indefinite article before noun with "d\'"',
+      },
+      {
+        index: 3,
+        answer: 'd\'',
+        gender: 'f',
+        explanation: 'article d\'actualité (compound noun) - "de" connects nouns in compound expressions (before vowel)',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle visite ___ centre commercial et ___ magasin ___ vêtements.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un centre (compound noun) - indefinite article before noun with adjective',
+      },
+      {
+        index: 1,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un magasin (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 2,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'magasin de vêtements (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Tu achètes ___ paquet ___ cigarettes et ___ briquet ___ poche.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un paquet (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'paquet de cigarettes (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un briquet (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'briquet de poche (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Il utilise ___ machine à café et ___ tasse ___ thé.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une machine (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une tasse (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 2,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'tasse de thé (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Elle lit ___ livre ___ cuisine et ___ recette ___ dessert.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un livre (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'livre de cuisine (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une recette (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'recette de dessert (compound noun) - "de" connects nouns in compound expressions',
+      },
+    ],
+  },
+  {
+    sentence: 'Nous visitons ___ exposition ___ peinture et ___ galerie ___ art.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une exposition (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'f',
+        explanation: 'exposition de peinture (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une galerie (compound noun) - indefinite article before noun with "d\'"',
+      },
+      {
+        index: 3,
+        answer: 'd\'',
+        gender: 'm',
+        explanation: 'galerie d\'art (compound noun) - "de" connects nouns in compound expressions (before vowel)',
+      },
+    ],
+  },
+  {
+    sentence: 'Il achète ___ carton ___ lait et ___ bouteille ___ jus.',
+    blanks: [
+      {
+        index: 0,
+        answer: 'un',
+        gender: 'm',
+        explanation: 'un carton (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 1,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'carton de lait (compound noun) - "de" connects nouns in compound expressions',
+      },
+      {
+        index: 2,
+        answer: 'une',
+        gender: 'f',
+        explanation: 'une bouteille (compound noun) - indefinite article before noun with "de"',
+      },
+      {
+        index: 3,
+        answer: 'de',
+        gender: 'm',
+        explanation: 'bouteille de jus (compound noun) - "de" connects nouns in compound expressions',
       },
     ],
   },

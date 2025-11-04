@@ -36,6 +36,42 @@ const AppContent: React.FC = () => {
 
   useEffect(() => {
     i18n.changeLanguage(settings.language)
+    
+    const langMap: Record<string, string> = {
+      en: 'en',
+      ko: 'ko',
+      tw: 'zh-TW',
+      fr: 'fr'
+    }
+    
+    document.documentElement.lang = langMap[settings.language] || 'en'
+    
+    const updateMeta = () => {
+      try {
+        const title = i18n.t('app.title')
+        const description = i18n.t('app.description')
+        
+        document.title = title
+        const metaDescription = document.querySelector('meta[name="description"]')
+        if (metaDescription) {
+          metaDescription.setAttribute('content', description)
+        }
+      } catch (e) {
+        // Ignore if translation is not ready
+      }
+    }
+    
+    updateMeta()
+    
+    const handleLanguageChanged = () => {
+      updateMeta()
+    }
+    
+    i18n.on('languageChanged', handleLanguageChanged)
+    
+    return () => {
+      i18n.off('languageChanged', handleLanguageChanged)
+    }
   }, [settings.language, i18n])
 
   const handleSelectConcept = (concept: string) => {

@@ -55,12 +55,12 @@ export const Statistics: React.FC<StatisticsProps> = ({
 
         {history.length > 0 && (
           <div className="history-section">
-            <h3>{t('statistics.history') || 'History'}</h3>
+            <h3>{t('statistics.history')}</h3>
             <div className="history-list">
               {history.map((item, index) => (
                 <div key={index} className={`history-item ${item.isCorrect ? 'correct' : 'incorrect'}`}>
                   <div className="history-question">
-                    <strong>#{index + 1}</strong> {item.question || t('statistics.question') || 'Question'}
+                    <strong>#{index + 1}</strong> {item.question || t('statistics.question')}
                   </div>
                   <div className="history-answers">
                     <div className="history-answer-row">
@@ -68,7 +68,7 @@ export const Statistics: React.FC<StatisticsProps> = ({
                       <span className="history-correct">{item.correctAnswer}</span>
                     </div>
                     <div className="history-answer-row">
-                      <span className="history-label">{t('statistics.yourAnswer') || 'Your Answer'}:</span>
+                      <span className="history-label">{t('statistics.yourAnswer')}:</span>
                       <span className={`history-user ${item.isCorrect ? 'correct-text' : 'incorrect-text'}`}>
                         {item.userAnswer || '-'}
                       </span>

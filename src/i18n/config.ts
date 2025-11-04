@@ -2,7 +2,8 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import enTranslations from './locales/en.json'
 import koTranslations from './locales/ko.json'
-import zhTwTranslations from './locales/zh-TW.json'
+import zhTwTranslations from './locales/tw.json'
+import frTranslations from './locales/fr.json'
 
 i18n
   .use(initReactI18next)
@@ -10,7 +11,8 @@ i18n
     resources: {
       en: { translation: enTranslations },
       ko: { translation: koTranslations },
-      'zh-TW': { translation: zhTwTranslations },
+      'tw': { translation: zhTwTranslations },
+      fr: { translation: frTranslations },
     },
     lng: 'en',
     fallbackLng: 'en',

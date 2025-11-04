@@ -1,16 +1,16 @@
 export const months = [
-  { fr: 'janvier', en: 'January' },
-  { fr: 'février', en: 'February' },
-  { fr: 'mars', en: 'March' },
-  { fr: 'avril', en: 'April' },
-  { fr: 'mai', en: 'May' },
-  { fr: 'juin', en: 'June' },
-  { fr: 'juillet', en: 'July' },
-  { fr: 'août', en: 'August' },
-  { fr: 'septembre', en: 'September' },
-  { fr: 'octobre', en: 'October' },
-  { fr: 'novembre', en: 'November' },
-  { fr: 'décembre', en: 'December' },
+  { fr: 'le janvier', en: 'January' },
+  { fr: 'le février', en: 'February' },
+  { fr: 'le mars', en: 'March' },
+  { fr: 'le avril', en: 'April' },
+  { fr: 'le mai', en: 'May' },
+  { fr: 'le juin', en: 'June' },
+  { fr: 'le juillet', en: 'July' },
+  { fr: 'le août', en: 'August' },
+  { fr: 'le septembre', en: 'September' },
+  { fr: 'le octobre', en: 'October' },
+  { fr: 'le novembre', en: 'November' },
+  { fr: 'le décembre', en: 'December' },
 ]
 
 export const seasons = [
@@ -21,12 +21,12 @@ export const seasons = [
 ]
 
 export const days = [
-  { fr: 'lundi', en: 'Monday' },
-  { fr: 'mardi', en: 'Tuesday' },
-  { fr: 'mercredi', en: 'Wednesday' },
-  { fr: 'jeudi', en: 'Thursday' },
-  { fr: 'vendredi', en: 'Friday' },
-  { fr: 'samedi', en: 'Saturday' },
-  { fr: 'dimanche', en: 'Sunday' },
+  { fr: 'le lundi', en: 'Monday' },
+  { fr: 'le mardi', en: 'Tuesday' },
+  { fr: 'le mercredi', en: 'Wednesday' },
+  { fr: 'le jeudi', en: 'Thursday' },
+  { fr: 'le vendredi', en: 'Friday' },
+  { fr: 'le samedi', en: 'Saturday' },
+  { fr: 'le dimanche', en: 'Sunday' },
 ]
 

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
 interface Settings {
-  language: 'en' | 'ko' | 'zh-TW'
+  language: 'en' | 'ko' | 'tw' | 'fr'
   caseSensitive: boolean
   accentSensitive: boolean
   replayCount: number

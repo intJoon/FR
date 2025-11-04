@@ -1,6 +1,7 @@
 {
   "app": {
     "title": "學習法語",
+    "description": "法語學習網頁應用程式 - 時間聽寫、單字聽寫、冠詞填空、單字記憶",
     "concepts": {
       "time": "時間聽寫",
       "vocabulary": "單字記憶",
@@ -14,7 +15,8 @@
     "languageOptions": {
       "en": "英語",
       "ko": "韓語",
-      "zh-TW": "繁體中文"
+      "tw": "中文",
+      "fr": "法語"
     },
     "skillImprovement": {
       "title": "提升實力",
@@ -25,7 +27,9 @@
       "accentSensitive": "重音符號檢查",
       "accentSensitiveDesc": "檢查重音符號",
       "replayCount": "重播次數",
-      "replayCountDesc": "聽寫重複播放次數 (1-10)"
+      "replayCountDesc": "聽寫重複播放次數 (1-10)",
+      "decrease": "減少",
+      "increase": "增加"
     }
   },
   "timeDictation": {
@@ -42,7 +46,7 @@
   "articles": {
     "title": "冠詞填空",
     "instruction": "填入缺少的冠詞",
-    "hint": "點擊單字查看性別資訊",
+    "hint": "點擊單字查看資訊",
     "explanation": "說明",
     "masculine": "陽性",
     "feminine": "陰性",
@@ -74,7 +78,8 @@
     "incorrect": "答錯",
     "answer": "答案",
     "close": "關閉",
-    "playing": "播放中..."
+    "playing": "播放中...",
+    "settings": "設定"
   }
 }
 

@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "Apprendre le Français",
+    "description": "Application web d'apprentissage du français - Dictée de l'heure, dictée de mots, remplissage des articles, mémorisation du vocabulaire",
+    "concepts": {
+      "time": "Dictée de l'Heure",
+      "vocabulary": "Mémorisation du Vocabulaire",
+      "articles": "Remplir les Articles",
+      "word": "Dictée de Mots"
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "languageOptions": {
+      "en": "Anglais",
+      "ko": "Coréen",
+      "tw": "Mandarin",
+      "fr": "Français"
+    },
+    "skillImprovement": {
+      "title": "Amélioration des Compétences",
+      "pureKeyboard": "Clavier Pur",
+      "pureKeyboardDesc": "Désactiver l'auto-complétion",
+      "caseSensitive": "Sensible à la Casse",
+      "caseSensitiveDesc": "Vérifier la casse",
+      "accentSensitive": "Sensible aux Accents",
+      "accentSensitiveDesc": "Vérifier les accents",
+      "replayCount": "Nombre de Répétitions",
+      "replayCountDesc": "Nombre de fois que l'audio se répète (1-10)",
+      "decrease": "Diminuer",
+      "increase": "Augmenter"
+    }
+  },
+  "timeDictation": {
+    "title": "Dictée de l'Heure",
+    "instruction": "Écoutez l'heure et écrivez-la au format 24 heures (4 chiffres)"
+  },
+  "vocabulary": {
+    "title": "Mémorisation du Vocabulaire",
+    "instruction": "Écrivez tous les éléments de mémoire",
+    "months": "Mois",
+    "seasons": "Saisons",
+    "days": "Jours de la Semaine"
+  },
+  "articles": {
+    "title": "Remplir les Articles",
+    "instruction": "Remplissez les articles manquants",
+    "hint": "Appuyez sur un mot pour voir les informations",
+    "explanation": "Explication",
+    "masculine": "Masculin",
+    "feminine": "Féminin",
+    "both": "Masculin/Féminin"
+  },
+  "wordDictation": {
+    "title": "Dictée de Mots",
+    "instruction": "Écoutez et écrivez les mots manquants"
+  },
+  "statistics": {
+    "title": "Statistiques",
+    "total": "Total",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "accuracy": "Précision",
+    "history": "Historique",
+    "question": "Question",
+    "yourAnswer": "Votre Réponse"
+  },
+  "common": {
+    "check": "Vérifier la Réponse",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "stop": "Arrêter",
+    "restart": "Redémarrer",
+    "replay": "Réécouter",
+    "statistics": "Statistiques",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "answer": "Réponse",
+    "close": "Fermer",
+    "playing": "Lecture...",
+    "settings": "Paramètres"
+  }
+}
+

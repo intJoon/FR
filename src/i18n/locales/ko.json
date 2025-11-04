@@ -1,6 +1,7 @@
 {
   "app": {
     "title": "프랑스어 학습",
+    "description": "프랑스어 학습 웹앱 - 시간 말하기, 단어 받아쓰기, 관사 채우기, 어휘 암기",
     "concepts": {
       "time": "시간 받아쓰기",
       "vocabulary": "단어 외워쓰기",
@@ -14,7 +15,8 @@
     "languageOptions": {
       "en": "영어",
       "ko": "한국어",
-      "zh-TW": "중국어 정체"
+      "tw": "중국어",
+      "fr": "프랑스어"
     },
     "skillImprovement": {
       "title": "실력 향상",
@@ -25,7 +27,9 @@
       "accentSensitive": "악센트 검사",
       "accentSensitiveDesc": "악센트 확인",
       "replayCount": "재생 반복 횟수",
-      "replayCountDesc": "오디오가 반복 재생되는 횟수 (1-10)"
+      "replayCountDesc": "오디오가 반복 재생되는 횟수 (1-10)",
+      "decrease": "감소",
+      "increase": "증가"
     }
   },
   "timeDictation": {
@@ -42,7 +46,7 @@
   "articles": {
     "title": "관사 채우기",
     "instruction": "빈칸에 관사를 채우세요",
-    "hint": "단어를 누르면 성별 정보를 볼 수 있습니다",
+    "hint": "단어를 누르면 정보를 볼 수 있습니다",
     "explanation": "설명",
     "masculine": "남성형",
     "feminine": "여성형",
@@ -72,9 +76,10 @@
     "statistics": "통계",
     "correct": "정답",
     "incorrect": "오답",
-    "answer": "답",
+    "answer": "정답",
     "close": "닫기",
-    "playing": "재생 중..."
+    "playing": "재생 중...",
+    "settings": "설정"
   }
 }
 

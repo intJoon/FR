@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../QuestionCard'
-import { generateWordDictationSentence, type WordDictationSentence } from '../../utils/wordDictationData'
+import { generateAllWordDictationSentences, type WordDictationSentence } from '../../utils/wordDictationData'
 import { speakFrench, stopSpeech } from '../../utils/speechUtils'
 import { useSettings } from '../../context/SettingsContext'
 import { compareText } from '../../utils/textUtils'
@@ -15,7 +15,12 @@ interface WordDictationProps {
 export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, onStop }) => {
   const { t } = useTranslation()
   const { settings } = useSettings()
-  const [currentSentence, setCurrentSentence] = useState<WordDictationSentence>(generateWordDictationSentence())
+  const allSentences = generateAllWordDictationSentences()
+  const [usedSentenceTexts, setUsedSentenceTexts] = useState<Set<string>>(new Set())
+  const [availableSentences] = useState<WordDictationSentence[]>(() => {
+    return [...allSentences].sort(() => Math.random() - 0.5)
+  })
+  const [currentSentence, setCurrentSentence] = useState<WordDictationSentence>(() => availableSentences[0])
   const [inputs, setInputs] = useState<Record<number, string>>({})
   const [showAnswer, setShowAnswer] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -42,7 +47,7 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
       for (let i = 0; i < settings.replayCount; i++) {
         await speakFrench(audioText)
         if (i < settings.replayCount - 1) {
-          await new Promise((resolve) => setTimeout(resolve, 300))
+          await new Promise((resolve) => setTimeout(resolve, 500))
         }
       }
     } finally {
@@ -61,7 +66,7 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
     const correctAnswers: string[] = []
     currentSentence.blanks.forEach((blank, idx) => {
       const userInput = inputs[idx] || ''
-      userAnswers.push(userInput)
+      userAnswers.push(userInput || '_')
       correctAnswers.push(blank.answers.join(' / '))
       const isCorrect = blank.answers.some((answer) => compareText(userInput, answer, settings))
       if (!isCorrect) {
@@ -75,8 +80,19 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   }
 
   const handleNext = () => {
-    const newSentence = generateWordDictationSentence()
-    setCurrentSentence(newSentence)
+    const newUsedTexts = new Set(usedSentenceTexts)
+    newUsedTexts.add(currentSentence.text)
+    setUsedSentenceTexts(newUsedTexts)
+
+    const remainingSentences = availableSentences.filter((s) => !newUsedTexts.has(s.text))
+    
+    if (remainingSentences.length === 0) {
+      onStop?.()
+      return
+    }
+
+    const nextSentence = remainingSentences[Math.floor(Math.random() * remainingSentences.length)]
+    setCurrentSentence(nextSentence)
     setInputs({})
     setShowAnswer(false)
     setProblemIndex((prev) => prev + 1)

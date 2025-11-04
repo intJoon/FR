@@ -12,7 +12,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onClose }) =
   const { settings, updateSettings } = useSettings()
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleLanguageChange = (lang: 'en' | 'ko' | 'zh-TW') => {
+  const handleLanguageChange = (lang: 'en' | 'ko' | 'tw' | 'fr') => {
     updateSettings({ language: lang })
     i18n.changeLanguage(lang)
     setIsOpen(false)
@@ -32,7 +32,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onClose }) =
         <>
           <div className="language-selector-overlay" onClick={() => setIsOpen(false)} />
           <div className="language-selector-dropdown">
-            {(['en', 'ko', 'zh-TW'] as const).map((lang) => (
+            {(['en', 'ko', 'tw', 'fr'] as const).map((lang) => (
               <button
                 key={lang}
                 className={`language-option ${settings.language === lang ? 'active' : ''}`}

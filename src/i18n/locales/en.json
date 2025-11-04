@@ -1,6 +1,7 @@
 {
   "app": {
     "title": "French Learning",
+    "description": "French learning web app - Time dictation, word dictation, article fill-in, vocabulary memorization",
     "concepts": {
       "time": "Time Dictation",
       "vocabulary": "Vocabulary Memorization",
@@ -14,7 +15,8 @@
     "languageOptions": {
       "en": "English",
       "ko": "Korean",
-      "zh-TW": "Traditional Chinese"
+      "tw": "Mandarin",
+      "fr": "French"
     },
     "skillImprovement": {
       "title": "Skill Improvement",
@@ -25,7 +27,9 @@
       "accentSensitive": "Accent Sensitive",
       "accentSensitiveDesc": "Check accents",
       "replayCount": "Replay Count",
-      "replayCountDesc": "Number of times audio repeats (1-10)"
+      "replayCountDesc": "Number of times audio repeats (1-10)",
+      "decrease": "Decrease",
+      "increase": "Increase"
     }
   },
   "timeDictation": {
@@ -42,7 +46,7 @@
   "articles": {
     "title": "Article Fill-in",
     "instruction": "Fill in the missing articles",
-    "hint": "Tap a word to see gender information",
+    "hint": "Tap a word to see information",
     "explanation": "Explanation",
     "masculine": "Masculine",
     "feminine": "Feminine",
@@ -74,7 +78,8 @@
     "incorrect": "Incorrect",
     "answer": "Answer",
     "close": "Close",
-    "playing": "Playing..."
+    "playing": "Playing...",
+    "settings": "Settings"
   }
 }
 

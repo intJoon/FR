@@ -24,7 +24,7 @@ export const Home: React.FC<HomeProps> = ({ onSelectConcept, onOpenSettings }) =
         <h1>{t('app.title')}</h1>
         <div className="header-buttons">
           <LanguageSelector />
-          <button className="settings-icon-button" onClick={onOpenSettings}>
+          <button className="settings-icon-button" onClick={onOpenSettings} aria-label={t('common.settings')}>
             ⚙️
           </button>
         </div>

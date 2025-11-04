@@ -29,7 +29,7 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
         for (let i = 0; i < settings.replayCount; i++) {
           await speakFrench(currentProblem.text)
           if (i < settings.replayCount - 1) {
-            await new Promise((resolve) => setTimeout(resolve, 300))
+            await new Promise((resolve) => setTimeout(resolve, 500))
           }
         }
       } finally {
@@ -45,7 +45,8 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
     const correct = compareText(input, currentProblem.answer, settings)
     setIsCorrect(correct)
     setShowAnswer(true)
-    onAnswerChecked?.(correct, currentProblem.text, input, currentProblem.answer)
+    const userAnswerText = input || '_'
+    onAnswerChecked?.(correct, currentProblem.text, userAnswerText, currentProblem.answer)
   }
 
   const handleNext = () => {

@@ -77,7 +77,7 @@ const baseTemplates: SentenceTemplate[] = [
   { template: 'Il cherche ___ pour son déménagement.', answers: ['un deux-pièces'], wordUsed: 'un deux-pièces' },
   { template: 'La chambre est ___ et ___.', answers: ['claire', 'grande'], wordUsed: 'claire' },
   { template: "C'est ___ cher pour moi.", answers: ['trop'], wordUsed: 'trop' },
-  { template: '___ est très animé.', answers: ['Ce quartier'], wordUsed: 'quartier' },
+  { template: 'Ce ___ est très animé.', answers: ['quartier'], wordUsed: 'quartier' },
   { template: "J'aimerais voir ___ s'il vous plaît.", answers: ['le plan de l\'appartement'], wordUsed: 'le plan de l\'appartement' },
   { template: 'Il y a ___ et ___.', answers: ['une cuisine', 'une salle de bains'], wordUsed: 'une cuisine' },
   { template: "L'immeuble est ___ et moderne.", answers: ['neuf'], wordUsed: 'neuf' },
@@ -232,10 +232,7 @@ const generateTemplatesFromWordPool = (): SentenceTemplate[] => {
   return templates
 }
 
-export const generateWordDictationSentence = (): WordDictationSentence => {
-  const allTemplates = [...baseTemplates, ...generateTemplatesFromWordPool()]
-  
-  const template = allTemplates[Math.floor(Math.random() * allTemplates.length)]
+const convertTemplateToSentence = (template: SentenceTemplate): WordDictationSentence => {
   const sentence = template.template
   const blanks: Array<{ start: number; end: number; answers: string[] }> = []
 
@@ -260,4 +257,16 @@ export const generateWordDictationSentence = (): WordDictationSentence => {
   }
 
   return { text: sentence, blanks }
+}
+
+export const generateAllWordDictationSentences = (): WordDictationSentence[] => {
+  const allTemplates = [...baseTemplates, ...generateTemplatesFromWordPool()]
+  return allTemplates.map(convertTemplateToSentence)
+}
+
+export const generateWordDictationSentence = (): WordDictationSentence => {
+  const allTemplates = [...baseTemplates, ...generateTemplatesFromWordPool()]
+  
+  const template = allTemplates[Math.floor(Math.random() * allTemplates.length)]
+  return convertTemplateToSentence(template)
 }

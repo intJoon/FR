@@ -46,7 +46,7 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
     const correctAnswers: string[] = []
     data.forEach((item, index) => {
       const userInput = inputs[index] || ''
-      userAnswers.push(userInput)
+      userAnswers.push(userInput || '_')
       correctAnswers.push(item)
       if (!compareText(userInput, item, settings)) {
         allCorrect = false
@@ -54,8 +54,8 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
     })
     setShowAnswer(true)
     const questionText = getCategoryTitle()
-    const userAnswerText = userAnswers.join(', ')
-    const correctAnswerText = correctAnswers.join(', ')
+    const userAnswerText = userAnswers.join(' / ')
+    const correctAnswerText = correctAnswers.join(' / ')
     onAnswerChecked?.(allCorrect, questionText, userAnswerText, correctAnswerText)
   }
 
