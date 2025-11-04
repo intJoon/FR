@@ -20,11 +20,25 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
   const [showAnswer, setShowAnswer] = useState(false)
   const [isCorrect, setIsCorrect] = useState(false)
   const [_problemIndex, setProblemIndex] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
 
   useEffect(() => {
-    speakFrench(currentProblem.text)
+    const playAudio = async () => {
+      setIsPlaying(true)
+      try {
+        for (let i = 0; i < settings.replayCount; i++) {
+          await speakFrench(currentProblem.text)
+          if (i < settings.replayCount - 1) {
+            await new Promise((resolve) => setTimeout(resolve, 300))
+          }
+        }
+      } finally {
+        setIsPlaying(false)
+      }
+    }
+    playAudio()
     return () => stopSpeech()
-  }, [currentProblem])
+  }, [currentProblem, settings.replayCount])
 
   const handleCheck = () => {
     if (showAnswer) return
@@ -42,9 +56,19 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
     setProblemIndex((prev) => prev + 1)
   }
 
-  const handleReplay = () => {
+  const handleReplay = async () => {
     stopSpeech()
-    speakFrench(currentProblem.text)
+    setIsPlaying(true)
+    try {
+      for (let i = 0; i < settings.replayCount; i++) {
+        await speakFrench(currentProblem.text)
+        if (i < settings.replayCount - 1) {
+          await new Promise((resolve) => setTimeout(resolve, 300))
+        }
+      }
+    } finally {
+      setIsPlaying(false)
+    }
   }
 
   return (
@@ -59,6 +83,7 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
       showReplay={true}
       onReplay={handleReplay}
       onNext={handleNext}
+      isPlaying={isPlaying}
     >
       <div className="time-dictation-container">
         <input

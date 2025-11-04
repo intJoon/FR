@@ -4,6 +4,7 @@ interface Settings {
   language: 'en' | 'ko' | 'zh-TW'
   caseSensitive: boolean
   accentSensitive: boolean
+  replayCount: number
 }
 
 interface SettingsContextType {
@@ -15,6 +16,7 @@ const defaultSettings: Settings = {
   language: 'en',
   caseSensitive: false,
   accentSensitive: false,
+  replayCount: 3,
 }
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined)

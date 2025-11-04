@@ -55,22 +55,6 @@
   cursor: not-allowed;
 }
 
-.playing-indicator {
-  color: #3498db;
-  font-size: 14px;
-  font-weight: 600;
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
 .next-button {
   background: #27ae60;
   color: white;

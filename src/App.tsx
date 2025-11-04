@@ -120,7 +120,7 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="app-game">
-      {renderConcept()}
+        {renderConcept()}
       {showSettings && <Settings onClose={() => setShowSettings(false)} />}
     </div>
   )

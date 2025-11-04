@@ -24,7 +24,7 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   useEffect(() => {
     playAudio()
     return () => stopSpeech()
-  }, [currentSentence])
+  }, [currentSentence, settings.replayCount])
 
   const playAudio = async () => {
     setIsPlaying(true)
@@ -39,7 +39,12 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
           blankOffset = blankPos + answer.length
         }
       })
-      await speakFrench(audioText)
+      for (let i = 0; i < settings.replayCount; i++) {
+        await speakFrench(audioText)
+        if (i < settings.replayCount - 1) {
+          await new Promise((resolve) => setTimeout(resolve, 300))
+        }
+      }
     } finally {
       setIsPlaying(false)
     }
@@ -142,10 +147,10 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
       showReplay={true}
       onReplay={handleReplay}
       onNext={handleNext}
+      isPlaying={isPlaying}
     >
       <div className="word-dictation-container">
         <div className="sentence-display">{renderSentence()}</div>
-        {isPlaying && <div className="playing-indicator">Playing...</div>}
       </div>
     </QuestionCard>
   )

@@ -48,6 +48,24 @@ export const Settings: React.FC<SettingsProps> = ({ onClose }) => {
                   <p>{t('settings.skillImprovement.accentSensitiveDesc')}</p>
                 </div>
               </label>
+
+              <div className="number-input-item">
+                <div>
+                  <strong>{t('settings.skillImprovement.replayCount')}</strong>
+                  <p>{t('settings.skillImprovement.replayCountDesc')}</p>
+                </div>
+                <input
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={settings.replayCount}
+                  onChange={(e) => {
+                    const value = Math.max(1, Math.min(10, parseInt(e.target.value) || 1))
+                    updateSettings({ replayCount: value })
+                  }}
+                  className="number-input"
+                />
+              </div>
             </div>
           </div>
         </div>

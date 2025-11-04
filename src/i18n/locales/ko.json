@@ -23,7 +23,9 @@
       "caseSensitive": "대소문자 검사",
       "caseSensitiveDesc": "대소문자 확인",
       "accentSensitive": "악센트 검사",
-      "accentSensitiveDesc": "악센트 확인"
+      "accentSensitiveDesc": "악센트 확인",
+      "replayCount": "재생 반복 횟수",
+      "replayCountDesc": "오디오가 반복 재생되는 횟수 (1-10)"
     }
   },
   "timeDictation": {
@@ -71,7 +73,8 @@
     "correct": "정답",
     "incorrect": "오답",
     "answer": "답",
-    "close": "닫기"
+    "close": "닫기",
+    "playing": "재생 중..."
   }
 }
 

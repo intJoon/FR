@@ -23,7 +23,9 @@
       "caseSensitive": "大小寫檢查",
       "caseSensitiveDesc": "檢查大小寫",
       "accentSensitive": "重音符號檢查",
-      "accentSensitiveDesc": "檢查重音符號"
+      "accentSensitiveDesc": "檢查重音符號",
+      "replayCount": "重播次數",
+      "replayCountDesc": "聽寫重複播放次數 (1-10)"
     }
   },
   "timeDictation": {
@@ -71,7 +73,8 @@
     "correct": "答對",
     "incorrect": "答錯",
     "answer": "答案",
-    "close": "關閉"
+    "close": "關閉",
+    "playing": "播放中..."
   }
 }
 

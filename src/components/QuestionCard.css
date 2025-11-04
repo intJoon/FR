@@ -3,28 +3,54 @@
   border-radius: 20px;
   padding: 24px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  min-height: 500px;
+  min-height: 650px;
   display: flex;
   flex-direction: column;
   position: relative;
+  box-sizing: border-box;
 }
 
 .question-header {
   margin-bottom: 24px;
 }
 
+.question-header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .question-header h2 {
   margin: 0 0 8px 0;
-  font-size: 24px;
+  font-size: 20px;
   color: #2c3e50;
   font-weight: 600;
 }
 
+.playing-indicator {
+  color: #3498db;
+  font-size: 14px;
+  font-weight: 600;
+  animation: pulse 1.5s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 .instruction {
   color: #7f8c8d;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0 0 16px 0;
   line-height: 1.5;
 }
@@ -74,14 +100,14 @@
   background: #3498db;
   color: white;
   border: none;
-  padding: 16px 32px;
-  border-radius: 10px;
-  font-size: 18px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-  min-height: 52px;
+  min-height: 44px;
 }
 
 .question-footer .next-button {
@@ -111,9 +137,9 @@
 }
 
 .answer {
-  padding: 20px;
-  border-radius: 12px;
-  font-size: 18px;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
 .answer.correct {
@@ -136,12 +162,13 @@
 @media (max-width: 768px) {
   .question-card {
     padding: 16px;
-    min-height: 400px;
-    margin: 0 12px;
+    min-height: 500px;
+    width: calc(100% - 24px);
+    margin: 0 auto;
   }
 
   .question-header h2 {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .instruction {
@@ -170,8 +197,9 @@
 @media (max-width: 480px) {
   .question-card {
     padding: 12px;
-    min-height: calc(100vh - 100px);
-    margin: 0 8px;
+    min-height: max(600px, calc(100vh - 100px));
+    width: calc(100% - 16px);
+    margin: 0 auto;
     border-radius: 16px;
   }
 
@@ -180,7 +208,7 @@
   }
 
   .question-header h2 {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .instruction {

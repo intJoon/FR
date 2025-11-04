@@ -14,6 +14,7 @@ interface QuestionCardProps {
   showReplay?: boolean
   onReplay?: () => void
   onNext?: () => void
+  isPlaying?: boolean
 }
 
 export const QuestionCard: React.FC<QuestionCardProps> = ({
@@ -28,6 +29,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   showReplay = false,
   onReplay,
   onNext,
+  isPlaying = false,
 }) => {
   const { t } = useTranslation()
 
@@ -37,7 +39,10 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         {t('common.stop')}
       </button>
       <div className="question-header">
-        <h2>{title}</h2>
+        <div className="question-header-row">
+          <h2>{title}</h2>
+          {isPlaying && <div className="playing-indicator">{t('common.playing')}</div>}
+        </div>
         {instruction && <p className="instruction">{instruction}</p>}
       </div>
 

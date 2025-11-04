@@ -23,20 +23,10 @@
       "caseSensitive": "Case Sensitive",
       "caseSensitiveDesc": "Check capitalization",
       "accentSensitive": "Accent Sensitive",
-      "accentSensitiveDesc": "Check accents"
+      "accentSensitiveDesc": "Check accents",
+      "replayCount": "Replay Count",
+      "replayCountDesc": "Number of times audio repeats (1-10)"
     }
-  },
-  "common": {
-    "check": "Check Answer",
-    "next": "Next",
-    "previous": "Previous",
-    "stop": "Stop",
-    "restart": "Restart",
-    "replay": "Replay",
-    "statistics": "Statistics",
-    "correct": "Correct",
-    "incorrect": "Incorrect",
-    "answer": "Answer"
   },
   "timeDictation": {
     "title": "Time Dictation",
@@ -83,7 +73,8 @@
     "correct": "Correct",
     "incorrect": "Incorrect",
     "answer": "Answer",
-    "close": "Close"
+    "close": "Close",
+    "playing": "Playing..."
   }
 }
 
