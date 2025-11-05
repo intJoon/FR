@@ -288,6 +288,8 @@ export const wordGender: Record<string, 'm' | 'f' | 'm/f'> = {
   kilo: 'm',
   centre: 'm',
   cuisine: 'f',
+  pot: 'm',
+  samedi: 'm',
 }
 
 // 성별 정보를 가져오는 함수
