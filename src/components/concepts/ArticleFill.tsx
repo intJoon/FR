@@ -338,9 +338,18 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
           if (word.trim()) {
             const wordKey = `word-${index}-${wordIndex}`
             const cleanWord = word.replace(/[.,!?;:]/g, '').trim()
+            const cleanWordLower = cleanWord.toLowerCase()
             const translation = getTranslation(cleanWord)
-            const gender = getWordGender(cleanWord)
+            
+            const isArticleRelated = currentSentence.articleRelatedWords?.has(cleanWordLower) || 
+              (cleanWordLower.endsWith('s') && currentSentence.articleRelatedWords?.has(cleanWordLower.slice(0, -1))) ||
+              (cleanWordLower.endsWith('es') && currentSentence.articleRelatedWords?.has(cleanWordLower.slice(0, -2)))
+            
+            let gender: 'm' | 'f' | 'm/f' | null = null
+            gender = getWordGender(cleanWordLower)
+            
             const hasInfo = translation || gender
+            
             elements.push(
               <span
                 key={wordKey}
