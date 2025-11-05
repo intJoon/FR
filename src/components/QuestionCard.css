@@ -142,11 +142,6 @@
   cursor: pointer;
   transition: all 0.2s;
   min-height: 44px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 .check-button {

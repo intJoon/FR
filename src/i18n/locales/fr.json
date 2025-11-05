@@ -4,7 +4,7 @@
     "description": "Application web d'apprentissage du français - Dictée de l'heure, dictée de mots, remplissage des articles, mémorisation du vocabulaire",
     "concepts": {
       "time": "Dictée de l'Heure",
-      "vocabulary": "Mémorisation du Vocabulaire",
+      "vocabulary": "Mémorisation du Vocab.",
       "articles": "Remplir les Articles",
       "word": "Dictée de Mots"
     }
@@ -35,7 +35,7 @@
     "instruction": "Écoutez l'heure et écrivez-la au format 24 heures (4 chiffres)"
   },
   "vocabulary": {
-    "title": "Mémorisation du Vocabulaire",
+    "title": "Mémorisation du Vocab.",
     "instruction": "Écrivez tous les éléments de mémoire",
     "months": "Mois",
     "seasons": "Saisons",
