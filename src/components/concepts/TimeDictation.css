@@ -66,18 +66,3 @@
   transform: translateY(-1px);
 }
 
-@media (max-width: 768px) {
-  .time-input {
-    font-size: 28px;
-    width: 150px;
-    padding: 14px 16px;
-    letter-spacing: 4px;
-  }
-
-  .next-button {
-    padding: 12px 24px;
-    font-size: 14px;
-    min-height: 44px;
-  }
-}
-

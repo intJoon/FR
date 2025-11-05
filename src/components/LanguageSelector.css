@@ -104,24 +104,3 @@
   background: #2980b9;
 }
 
-@media (max-width: 768px) {
-  .language-icon-button {
-    width: 40px;
-    height: 40px;
-  }
-
-  .language-icon-button svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .language-selector-dropdown {
-    min-width: 100px;
-  }
-
-  .language-option {
-    padding: 10px 16px;
-    font-size: 14px;
-  }
-}
-

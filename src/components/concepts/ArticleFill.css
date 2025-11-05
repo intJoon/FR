@@ -117,23 +117,3 @@
   color: #721c24;
 }
 
-@media (max-width: 768px) {
-  .sentence-display {
-    font-size: 16px;
-    padding: 16px;
-    line-height: 1.6;
-  }
-
-  .article-input {
-    font-size: 16px;
-    padding: 8px 10px;
-    min-height: 44px;
-  }
-
-  .next-button {
-    padding: 12px 24px;
-    font-size: 14px;
-    min-height: 44px;
-  }
-}
-

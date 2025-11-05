@@ -8,8 +8,8 @@
 
 .vocabulary-inputs {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
   width: 100%;
 }
 
@@ -82,24 +82,5 @@
 .next-button:active {
   background: #229954;
   transform: translateY(-1px);
-}
-
-@media (max-width: 768px) {
-  .vocabulary-inputs {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 12px;
-  }
-
-  .vocabulary-input {
-    font-size: 16px;
-    padding: 10px;
-    min-height: 44px;
-  }
-
-  .next-button {
-    padding: 12px 24px;
-    font-size: 14px;
-    min-height: 44px;
-  }
 }
 
