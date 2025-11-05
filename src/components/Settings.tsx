@@ -16,43 +16,47 @@ export const Settings: React.FC<SettingsProps> = ({ onClose }) => {
       <div className="settings-modal">
         <div className="settings-header">
           <h2>{t('settings.title')}</h2>
-          <button className="close-button" onClick={onClose} aria-label={t('common.close')}>
-            ×
-          </button>
         </div>
 
         <div className="settings-content">
           <div className="settings-section">
             <h3>{t('settings.skillImprovement.title')}</h3>
-            <div className="toggle-options">
-              <label className="toggle-item">
-                <input
-                  type="checkbox"
-                  checked={settings.caseSensitive}
-                  onChange={(e) => updateSettings({ caseSensitive: e.target.checked })}
-                />
-                <div>
-                  <strong>{t('settings.skillImprovement.caseSensitive')}</strong>
-                  <p>{t('settings.skillImprovement.caseSensitiveDesc')}</p>
+            
+            <div className="settings-grid">
+              <div className="setting-card">
+                <div className="setting-label">
+                  <div className="setting-title">{t('settings.skillImprovement.caseSensitive')}</div>
+                  <div className="setting-desc">{t('settings.skillImprovement.caseSensitiveDesc')}</div>
                 </div>
-              </label>
+                <label className="toggle-switch">
+                  <input
+                    type="checkbox"
+                    checked={settings.caseSensitive}
+                    onChange={(e) => updateSettings({ caseSensitive: e.target.checked })}
+                  />
+                  <span className="toggle-slider"></span>
+                </label>
+              </div>
 
-              <label className="toggle-item">
-                <input
-                  type="checkbox"
-                  checked={settings.accentSensitive}
-                  onChange={(e) => updateSettings({ accentSensitive: e.target.checked })}
-                />
-                <div>
-                  <strong>{t('settings.skillImprovement.accentSensitive')}</strong>
-                  <p>{t('settings.skillImprovement.accentSensitiveDesc')}</p>
+              <div className="setting-card">
+                <div className="setting-label">
+                  <div className="setting-title">{t('settings.skillImprovement.accentSensitive')}</div>
+                  <div className="setting-desc">{t('settings.skillImprovement.accentSensitiveDesc')}</div>
                 </div>
-              </label>
+                <label className="toggle-switch">
+                  <input
+                    type="checkbox"
+                    checked={settings.accentSensitive}
+                    onChange={(e) => updateSettings({ accentSensitive: e.target.checked })}
+                  />
+                  <span className="toggle-slider"></span>
+                </label>
+              </div>
 
-              <div className="number-input-item">
-                <div>
-                  <strong>{t('settings.skillImprovement.replayCount')}</strong>
-                  <p>{t('settings.skillImprovement.replayCountDesc')}</p>
+              <div className="setting-card replay-count">
+                <div className="setting-label">
+                  <div className="setting-title">{t('settings.skillImprovement.replayCount')}</div>
+                  <div className="setting-desc">{t('settings.skillImprovement.replayCountDesc')}</div>
                 </div>
                 <div className="number-input-group">
                   <button
@@ -92,6 +96,12 @@ export const Settings: React.FC<SettingsProps> = ({ onClose }) => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="settings-footer">
+          <button className="close-settings-button" onClick={onClose}>
+            {t('common.close')}
+          </button>
         </div>
       </div>
     </div>

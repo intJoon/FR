@@ -52,10 +52,6 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   padding: 20px;
-  padding-top: max(20px, calc(20px + env(safe-area-inset-top)));
-  padding-bottom: max(20px, calc(20px + env(safe-area-inset-bottom)));
-  padding-left: max(20px, calc(20px + env(safe-area-inset-left)));
-  padding-right: max(20px, calc(20px + env(safe-area-inset-right)));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,10 +68,7 @@ body {
 #app {
   min-height: 100vh;
   min-height: 100dvh;
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
+  padding: 0;
   overflow: hidden;
   position: fixed;
   width: 100%;
@@ -88,13 +81,13 @@ body {
 
 @media (max-width: 768px) {
   .app-game {
-    padding: 12px;
+    padding: 20px;
   }
 }
 
 @media (max-width: 480px) {
   .app-game {
-    padding: 8px;
+    padding: 20px;
   }
 
   body {

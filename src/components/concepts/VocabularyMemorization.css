@@ -23,10 +23,11 @@
   font-size: 16px;
   padding: 12px;
   border: 2px solid #bdc3c7;
-  border-radius: 8px;
+  border-radius: 20px;
   text-align: center;
   transition: all 0.2s;
   min-height: 44px;
+  min-width: 80px;
 }
 
 .vocabulary-input:focus {
@@ -63,8 +64,8 @@
   color: white;
   border: none;
   padding: 14px 28px;
-  border-radius: 10px;
-  font-size: 15px;
+  border-radius: 20px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;

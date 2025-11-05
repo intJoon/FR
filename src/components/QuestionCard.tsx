@@ -58,15 +58,20 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 
   return (
     <div className="question-card">
-      <button className="stop-button" onClick={onStop}>
-        {t('common.stop')}
-      </button>
       <div className="question-header">
         <div className="question-header-row">
-          <h2>{title}</h2>
-          {shouldShowIndicator && <div className="playing-indicator">{t('common.playing')}</div>}
+          <div className="question-title-group">
+            <h2>{title}</h2>
+            {shouldShowIndicator && <div className="playing-indicator">{t('common.playing')}</div>}
+          </div>
+          <button className="stop-button" onClick={onStop} aria-label={t('common.stop')}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+          </button>
         </div>
-        {instruction && <p className="instruction">{instruction}</p>}
       </div>
 
       <div className="question-content">
@@ -83,8 +88,11 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 
       <div className="question-footer">
         {showReplay && onReplay && (
-          <button className="replay-button" onClick={onReplay}>
-            {t('common.replay')}
+          <button className="replay-button" onClick={onReplay} aria-label={t('common.replay')}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
           </button>
         )}
         {!showAnswer && (
