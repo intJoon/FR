@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../QuestionCard'
 import { generateAllWordDictationSentences, type WordDictationSentence } from '../../utils/wordDictationData'
@@ -25,6 +25,8 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   const [showAnswer, setShowAnswer] = useState(false)
   const [isPlaying, setIsPlaying] = useState(true)
   const [_problemIndex, setProblemIndex] = useState(0)
+  const measureRef = useRef<HTMLSpanElement>(null)
+  const [inputWidths, setInputWidths] = useState<Record<number, number>>({})
 
   useEffect(() => {
     let isActive = true
@@ -94,7 +96,24 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
 
   const handleInputChange = (blankIndex: number, value: string) => {
     setInputs((prev) => ({ ...prev, [blankIndex]: value }))
+    
+    if (measureRef.current) {
+      measureRef.current.textContent = value || '___'
+      const width = measureRef.current.offsetWidth
+      setInputWidths((prev) => ({ ...prev, [blankIndex]: Math.max(width + 24, 60) }))
+    }
   }
+
+  useEffect(() => {
+    if (measureRef.current) {
+      currentSentence.blanks.forEach((_, blankIndex) => {
+        const value = inputs[blankIndex] || '___'
+        measureRef.current!.textContent = value
+        const width = measureRef.current!.offsetWidth
+        setInputWidths((prev) => ({ ...prev, [blankIndex]: Math.max(width + 24, 60) }))
+      })
+    }
+  }, [currentSentence, inputs])
 
   const handleCheck = () => {
     if (showAnswer) return
@@ -168,6 +187,7 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
             autoCorrect="off"
             spellCheck={false}
             disabled={showAnswer}
+            style={{ width: `${inputWidths[blankIndex] || 60}px` }}
           />
         )
       }
@@ -204,6 +224,7 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
       isPlaying={isPlaying}
     >
       <div className="word-dictation-container">
+        <span ref={measureRef} className="word-measure" aria-hidden="true" />
         <div className="sentence-display">{renderSentence()}</div>
       </div>
     </QuestionCard>

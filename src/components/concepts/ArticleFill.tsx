@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../QuestionCard'
 import { articleSentences, type ArticleSentence } from '../../utils/articleData'
@@ -33,6 +33,8 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
   const [problemIndex, setProblemIndex] = useState(0)
   const [showHint, setShowHint] = useState(true)
   const [hintFading, setHintFading] = useState(false)
+  const measureRef = useRef<HTMLSpanElement>(null)
+  const [inputWidths, setInputWidths] = useState<Record<number, number>>({})
 
   useEffect(() => {
     if (problemIndex === 0) {
@@ -240,7 +242,24 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
 
   const handleInputChange = (blankIndex: number, value: string) => {
     setInputs((prev) => ({ ...prev, [blankIndex]: value }))
+    
+    if (measureRef.current) {
+      measureRef.current.textContent = value || '___'
+      const width = measureRef.current.offsetWidth
+      setInputWidths((prev) => ({ ...prev, [blankIndex]: Math.max(width + 24, 60) }))
+    }
   }
+
+  useEffect(() => {
+    if (measureRef.current) {
+      currentSentence.blanks.forEach((_, blankIndex) => {
+        const value = inputs[blankIndex] || '___'
+        measureRef.current!.textContent = value
+        const width = measureRef.current!.offsetWidth
+        setInputWidths((prev) => ({ ...prev, [blankIndex]: Math.max(width + 24, 60) }))
+      })
+    }
+  }, [currentSentence, inputs])
 
   const handleCheck = () => {
     if (showAnswer) return
@@ -308,7 +327,7 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
               autoCorrect="off"
               spellCheck={false}
               disabled={showAnswer}
-              style={{ width: `${Math.max(userInput.length || 3, 3)}ch` }}
+              style={{ width: `${inputWidths[blankIndex] || 60}px` }}
             />
           </span>
         )
@@ -379,6 +398,7 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
     >
       <div className="article-container">
         {showHint && <div className={`article-hint ${hintFading ? 'fade-out' : ''}`}>{t('articles.hint')}</div>}
+        <span ref={measureRef} className="article-measure" aria-hidden="true" />
         <div className="sentence-display">{renderSentence()}</div>
       </div>
     </QuestionCard>

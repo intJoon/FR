@@ -106,6 +106,20 @@
   display: inline-block;
 }
 
+.article-measure {
+  position: absolute;
+  visibility: hidden;
+  white-space: pre;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: inherit;
+  padding: 0;
+  margin: 0;
+  height: 0;
+  overflow: hidden;
+  border: 0;
+}
+
 .article-input {
   font-size: 18px;
   padding: 10px 12px;

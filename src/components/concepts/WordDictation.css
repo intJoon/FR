@@ -24,13 +24,27 @@
 
 .word-input {
   font-size: 18px;
-  padding: 10px 16px;
+  padding: 10px 12px;
   border: 2px solid #3498db;
   border-radius: 8px;
-  min-width: 120px;
+  min-width: 60px;
   min-height: 44px;
   text-align: center;
   transition: all 0.2s;
+}
+
+.word-measure {
+  position: absolute;
+  visibility: hidden;
+  white-space: pre;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: inherit;
+  padding: 0;
+  margin: 0;
+  height: 0;
+  overflow: hidden;
+  border: 0;
 }
 
 .word-input:focus {
@@ -108,8 +122,8 @@
 
   .word-input {
     font-size: 16px;
-    padding: 8px 12px;
-    min-width: 100px;
+    padding: 8px 10px;
+    min-width: 60px;
     min-height: 44px;
   }
 
