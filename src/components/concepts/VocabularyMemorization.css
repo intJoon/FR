@@ -71,9 +71,16 @@
   min-height: 44px;
 }
 
-.next-button:hover {
+@media (hover: hover) {
+  .next-button:hover {
+    background: #229954;
+    transform: translateY(-2px);
+  }
+}
+
+.next-button:active {
   background: #229954;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {

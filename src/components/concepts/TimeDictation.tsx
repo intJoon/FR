@@ -20,11 +20,11 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
   const [showAnswer, setShowAnswer] = useState(false)
   const [isCorrect, setIsCorrect] = useState(false)
   const [_problemIndex, setProblemIndex] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
 
   useEffect(() => {
+    setIsPlaying(true)
     const playAudio = async () => {
-      setIsPlaying(true)
       try {
         for (let i = 0; i < settings.replayCount; i++) {
           await speakFrench(currentProblem.text)

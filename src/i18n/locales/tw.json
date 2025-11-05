@@ -1,10 +1,10 @@
 {
   "app": {
     "title": "學習法語",
-    "description": "法語學習網頁應用程式 - 時間聽寫、單字聽寫、冠詞填空、單字記憶",
+    "description": "法語學習網頁應用程式 - 時間聽寫、單字聽寫、冠詞填空、單字默寫",
     "concepts": {
       "time": "時間聽寫",
-      "vocabulary": "單字記憶",
+      "vocabulary": "單字默寫",
       "articles": "冠詞填空",
       "word": "單字聽寫"
     }
@@ -37,7 +37,7 @@
     "instruction": "聽時間並以24小時制格式（4位數字）寫下"
   },
   "vocabulary": {
-    "title": "單字記憶",
+    "title": "單字默寫",
     "instruction": "憑記憶寫下所有項目",
     "months": "12個月",
     "seasons": "4個季節",

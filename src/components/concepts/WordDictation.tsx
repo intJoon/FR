@@ -23,16 +23,16 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   const [currentSentence, setCurrentSentence] = useState<WordDictationSentence>(() => availableSentences[0])
   const [inputs, setInputs] = useState<Record<number, string>>({})
   const [showAnswer, setShowAnswer] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
   const [_problemIndex, setProblemIndex] = useState(0)
 
   useEffect(() => {
+    setIsPlaying(true)
     playAudio()
     return () => stopSpeech()
   }, [currentSentence, settings.replayCount])
 
   const playAudio = async () => {
-    setIsPlaying(true)
     try {
       let audioText = currentSentence.text
       let blankOffset = 0

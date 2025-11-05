@@ -1,15 +1,41 @@
 .settings-overlay {
   position: fixed;
-  top: 0;
+  top: env(safe-area-inset-top);
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: env(safe-area-inset-bottom);
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   padding: 20px;
+  padding-left: max(20px, calc(20px + env(safe-area-inset-left)));
+  padding-right: max(20px, calc(20px + env(safe-area-inset-right)));
+}
+
+.settings-overlay::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top);
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), #532a97;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.settings-overlay::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-bottom);
+  background-color: white;
+  z-index: 1001;
+  pointer-events: none;
 }
 
 .settings-modal {
@@ -53,7 +79,14 @@
   transition: all 0.2s;
 }
 
-.close-button:hover {
+@media (hover: hover) {
+  .close-button:hover {
+    background: #f8f9fa;
+    color: #2c3e50;
+  }
+}
+
+.close-button:active {
   background: #f8f9fa;
   color: #2c3e50;
 }
@@ -97,7 +130,14 @@
   transition: all 0.2s;
 }
 
-.language-button:hover {
+@media (hover: hover) {
+  .language-button:hover {
+    border-color: #3498db;
+    background: #ecf0f1;
+  }
+}
+
+.language-button:active {
   border-color: #3498db;
   background: #ecf0f1;
 }
@@ -124,7 +164,13 @@
   transition: background 0.2s;
 }
 
-.toggle-item:hover {
+@media (hover: hover) {
+  .toggle-item:hover {
+    background: #f8f9fa;
+  }
+}
+
+.toggle-item:active {
   background: #f8f9fa;
 }
 
@@ -162,7 +208,13 @@
   transition: background 0.2s;
 }
 
-.number-input-item:hover {
+@media (hover: hover) {
+  .number-input-item:hover {
+    background: #f8f9fa;
+  }
+}
+
+.number-input-item:active {
   background: #f8f9fa;
 }
 
@@ -207,13 +259,18 @@
   line-height: 1;
 }
 
-.number-button:hover:not(:disabled) {
-  border-color: #3498db;
-  background: #ecf0f1;
-  color: #3498db;
+@media (hover: hover) {
+  .number-button:hover:not(:disabled) {
+    border-color: #3498db;
+    background: #ecf0f1;
+    color: #3498db;
+  }
 }
 
 .number-button:active:not(:disabled) {
+  border-color: #3498db;
+  background: #ecf0f1;
+  color: #3498db;
   transform: scale(0.95);
 }
 

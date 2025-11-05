@@ -8,17 +8,30 @@
   border-radius: 50%;
   width: 48px;
   height: 48px;
-  font-size: 24px;
   cursor: pointer;
   transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
+  padding: 0;
 }
 
-.language-icon-button:hover {
+.language-icon-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (hover: hover) {
+  .language-icon-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+}
+
+.language-icon-button:active {
   background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .language-selector-overlay {
@@ -67,7 +80,17 @@
   transition: background 0.2s;
 }
 
-.language-option:hover {
+@media (hover: hover) {
+  .language-option:hover {
+    background: #f8f9fa;
+  }
+
+  .language-option.active:hover {
+    background: #2980b9;
+  }
+}
+
+.language-option:active {
   background: #f8f9fa;
 }
 
@@ -77,7 +100,7 @@
   font-weight: 600;
 }
 
-.language-option.active:hover {
+.language-option.active:active {
   background: #2980b9;
 }
 
@@ -85,7 +108,11 @@
   .language-icon-button {
     width: 40px;
     height: 40px;
-    font-size: 20px;
+  }
+
+  .language-icon-button svg {
+    width: 20px;
+    height: 20px;
   }
 
   .language-selector-dropdown {

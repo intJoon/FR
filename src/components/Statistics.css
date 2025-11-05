@@ -1,19 +1,41 @@
 .statistics-overlay {
   position: fixed;
-  top: 0;
+  top: env(safe-area-inset-top);
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: env(safe-area-inset-bottom);
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  padding-left: max(20px, env(safe-area-inset-left));
-  padding-right: max(20px, env(safe-area-inset-right));
-  padding-top: max(20px, env(safe-area-inset-top));
-  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  padding: 20px;
+  padding-left: max(20px, calc(20px + env(safe-area-inset-left)));
+  padding-right: max(20px, calc(20px + env(safe-area-inset-right)));
+}
+
+.statistics-overlay::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top);
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), #532a97;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.statistics-overlay::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-bottom);
+  background-color: white;
+  z-index: 1001;
+  pointer-events: none;
 }
 
 .statistics-modal {
@@ -59,7 +81,14 @@
   transition: all 0.2s;
 }
 
-.close-button:hover {
+@media (hover: hover) {
+  .close-button:hover {
+    background: #f8f9fa;
+    color: #2c3e50;
+  }
+}
+
+.close-button:active {
   background: #f8f9fa;
   color: #2c3e50;
 }
@@ -80,8 +109,14 @@
   transition: transform 0.2s;
 }
 
-.stat-card:hover {
-  transform: translateY(-4px);
+@media (hover: hover) {
+  .stat-card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.stat-card:active {
+  transform: translateY(-2px);
 }
 
 .stat-card.correct {
@@ -145,9 +180,21 @@
   color: white;
 }
 
-.restart-button:hover {
+@media (hover: hover) {
+  .restart-button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+  }
+
+  .close-stat-button:hover {
+    background: #7f8c8d;
+    transform: translateY(-2px);
+  }
+}
+
+.restart-button:active {
   background: #2980b9;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .close-stat-button {
@@ -155,9 +202,9 @@
   color: white;
 }
 
-.close-stat-button:hover {
+.close-stat-button:active {
   background: #7f8c8d;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .history-section {
