@@ -1,3 +1,11 @@
+.concept-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
 .sentence-display {
   font-size: 18px;
   line-height: 1.8;
@@ -11,10 +19,12 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
-.blank-input {
+.blank-input,
+.vocabulary-input,
+.time-input {
   font-size: 18px;
   padding: 10px 12px;
   border: 2px solid #3498db;
@@ -25,31 +35,62 @@
   transition: all 0.2s;
 }
 
-.blank-input:focus {
+.blank-input:focus,
+.vocabulary-input:focus,
+.time-input:focus {
   outline: none;
   border-color: #2980b9;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
-.blank-input.correct {
+.time-input {
+  font-size: 32px;
+  padding: 16px 20px;
+  border-width: 3px;
+  width: 180px;
+  letter-spacing: 6px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.time-input:focus {
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+}
+
+.vocabulary-input {
+  font-size: 16px;
+  padding: 12px;
+  border-color: #bdc3c7;
+}
+
+.vocabulary-input:focus {
+  border-color: #3498db;
+}
+
+.blank-input.correct,
+.vocabulary-input.correct,
+.time-input.correct {
   background: #d4edda;
   border-color: #c3e6cb;
   color: #155724;
 }
 
-.blank-input.incorrect {
+.blank-input.incorrect,
+.vocabulary-input.incorrect,
+.time-input.incorrect {
   background: #f8d7da;
   border-color: #f5c6cb;
   color: #721c24;
 }
 
-.blank-input:disabled {
+.blank-input:disabled,
+.vocabulary-input:disabled,
+.time-input:disabled {
   cursor: not-allowed;
 }
 
-.blank-container {
-  position: relative;
-  display: inline-block;
+.time-input:disabled {
+  background: #ecf0f1;
 }
 
 .blank-measure {

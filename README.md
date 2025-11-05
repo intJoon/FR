@@ -81,6 +81,8 @@ src/
 └── utils/              # 유틸리티 함수
     ├── articleData.ts      # 관사 문제 데이터
     ├── inputUtils.ts       # 입력 관련 유틸리티
+    ├── inputWidthHook.ts   # 입력 너비 계산 커스텀 훅
+    ├── sentenceUtils.ts    # 문장 렌더링 유틸리티
     ├── speechUtils.ts      # 음성 합성 유틸리티
     ├── textUtils.ts        # 텍스트 비교 유틸리티
     ├── timeUtils.ts        # 시간 생성 유틸리티
@@ -122,8 +124,11 @@ src/
 - **코드 스타일**: TypeScript strict mode 사용
 - **코드 품질**: 
   - 중복 코드 제거 및 공통 유틸리티 모듈화
-  - 재사용 가능한 함수 추출 (`playAudioWithReplay`, `INPUT_FIELD_PROPS` 등)
+  - 재사용 가능한 함수 및 커스텀 훅 추출 (`playAudioWithReplay`, `createReplayHandler`, `INPUT_FIELD_PROPS`, `renderSentenceWithBlanks`, `useInputWidth` 등)
   - 일관된 prop 타입 및 인터페이스 정의
+  - 사용하지 않는 코드 및 의존성 제거
+  - 공통 로직을 커스텀 훅으로 추출하여 코드 재사용성 향상
+  - CSS 스타일 통합 및 공통 스타일 관리 (`common.css`)
 - **다국어**: i18next를 통한 4개 언어 지원 (영어, 한국어, 중국어(번체), 프랑스어)
 
 ## 라이선스

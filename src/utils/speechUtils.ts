@@ -56,3 +56,13 @@ export const playAudioWithReplay = async (
   }
 }
 
+export const createReplayHandler = (
+  playAudio: (isActiveRef: { current: boolean }) => Promise<void>
+) => {
+  return async () => {
+    stopSpeech()
+    await new Promise((resolve) => setTimeout(resolve, 50))
+    await playAudio({ current: true })
+  }
+}
+

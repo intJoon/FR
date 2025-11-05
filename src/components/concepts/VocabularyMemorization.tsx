@@ -103,11 +103,11 @@ export const VocabularyMemorization: FC<VocabularyMemorizationProps> = ({ onAnsw
       isCorrect={allCorrect}
       onNext={handleNext}
     >
-      <div className="vocabulary-container">
+      <div className="vocabulary-container concept-container">
         <div className="vocabulary-inputs">
-          {data.map((_item, index) => {
+          {data.map((item, index) => {
             const userInput = inputs[index] || ''
-            const isCorrect = showAnswer ? compareText(userInput, _item, settings) : null
+            const isCorrect = showAnswer ? compareText(userInput, item, settings) : null
             return (
               <div key={index} className="vocabulary-item">
                 <input

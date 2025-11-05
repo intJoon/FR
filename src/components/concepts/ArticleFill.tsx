@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef, type FC, type ReactNode } from 'react'
+import { useState, type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../QuestionCard'
-import { articleSentences, type ArticleSentence } from '../../utils/articleData'
+import { articleSentences } from '../../utils/articleData'
 import { useSettings } from '../../context/SettingsContext'
 import { compareText } from '../../utils/textUtils'
-import { calculateInputWidth, INPUT_FIELD_PROPS } from '../../utils/inputUtils'
-import '../../styles/common.css'
+import { useInputWidth } from '../../utils/inputWidthHook'
+import { renderSentenceWithBlanks } from '../../utils/sentenceUtils'
 import './ArticleFill.css'
 
 interface ArticleFillProps {
@@ -21,27 +21,10 @@ export const ArticleFill: FC<ArticleFillProps> = ({ onAnswerChecked, onStop }) =
     return articleSentences.map((_, index) => index).sort(() => Math.random() - 0.5)
   })
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(() => availableIndices[0])
-  const [currentSentence, setCurrentSentence] = useState<ArticleSentence>(
-    articleSentences[currentSentenceIndex]
-  )
+  const currentSentence = articleSentences[currentSentenceIndex]
   const [inputs, setInputs] = useState<Record<number, string>>({})
   const [showAnswer, setShowAnswer] = useState(false)
-  const measureRef = useRef<HTMLSpanElement>(null)
-  const [inputWidths, setInputWidths] = useState<Record<number, number>>({})
-
-  const handleInputChange = (blankIndex: number, value: string) => {
-    setInputs((prev) => ({ ...prev, [blankIndex]: value }))
-    const width = calculateInputWidth(measureRef, value)
-    setInputWidths((prev) => ({ ...prev, [blankIndex]: width }))
-  }
-
-  useEffect(() => {
-    currentSentence.blanks.forEach((_, blankIndex) => {
-      const value = inputs[blankIndex] || '___'
-      const width = calculateInputWidth(measureRef, value)
-      setInputWidths((prev) => ({ ...prev, [blankIndex]: width }))
-    })
-  }, [currentSentence, inputs])
+  const { measureRef, inputWidths, handleInputChange } = useInputWidth(currentSentence, inputs, setInputs)
 
   const handleCheck = () => {
     if (showAnswer) return
@@ -62,6 +45,13 @@ export const ArticleFill: FC<ArticleFillProps> = ({ onAnswerChecked, onStop }) =
     onAnswerChecked?.(allCorrect, currentSentence.sentence, userAnswerText, correctAnswerText)
   }
 
+  const isCorrectMap: Record<number, boolean | null> = {}
+  if (showAnswer) {
+    currentSentence.blanks.forEach((blank, idx) => {
+      isCorrectMap[idx] = compareText(inputs[idx] || '', blank.answer, settings)
+    })
+  }
+
   const handleNext = () => {
     const newUsedIndices = new Set(usedIndices)
     newUsedIndices.add(currentSentenceIndex)
@@ -76,53 +66,16 @@ export const ArticleFill: FC<ArticleFillProps> = ({ onAnswerChecked, onStop }) =
 
     const nextIndex = remainingIndices[Math.floor(Math.random() * remainingIndices.length)]
     setCurrentSentenceIndex(nextIndex)
-    setCurrentSentence(articleSentences[nextIndex])
     setInputs({})
     setShowAnswer(false)
   }
 
-  const renderSentence = () => {
-    const parts = currentSentence.sentence.split('___')
-    const elements: ReactNode[] = []
-
-    parts.forEach((part, index) => {
-      if (index > 0) {
-        const blankIndex = index - 1
-        const blank = currentSentence.blanks[blankIndex]
-        const userInput = inputs[blankIndex] || ''
-        const isCorrect = showAnswer
-          ? compareText(userInput, blank.answer, settings)
-          : null
-
-        elements.push(
-          <span key={`blank-${blankIndex}`} className="blank-container">
-            <input
-              type="text"
-              className={`blank-input ${showAnswer && isCorrect !== null ? (isCorrect ? 'correct' : 'incorrect') : ''}`}
-              value={userInput}
-              onChange={(e) => handleInputChange(blankIndex, e.target.value)}
-              placeholder="___"
-              {...INPUT_FIELD_PROPS}
-              disabled={showAnswer}
-              style={{ width: `${inputWidths[blankIndex] || 60}px` }}
-            />
-          </span>
-        )
-      }
-      if (part) {
-        elements.push(<span key={`text-${index}`}>{part}</span>)
-      }
-    })
-
-    return elements
-  }
-
   const allCorrect = showAnswer
-    ? currentSentence.blanks.every((blank, _idx) => compareText(inputs[_idx] || '', blank.answer, settings))
+    ? currentSentence.blanks.every((blank, idx) => compareText(inputs[idx] || '', blank.answer, settings))
     : false
 
   const answerText = showAnswer
-    ? currentSentence.blanks.map((blank, _idx) => blank.answer || '(_)').join(' / ')
+    ? currentSentence.blanks.map((blank) => blank.answer || '(_)').join(' / ')
     : undefined
 
   return (
@@ -136,9 +89,18 @@ export const ArticleFill: FC<ArticleFillProps> = ({ onAnswerChecked, onStop }) =
       isCorrect={allCorrect}
       onNext={handleNext}
     >
-      <div className="article-container">
+      <div className="article-container concept-container">
         <span ref={measureRef} className="blank-measure" aria-hidden="true" />
-        <div className="sentence-display">{renderSentence()}</div>
+        <div className="sentence-display">
+          {renderSentenceWithBlanks({
+            text: currentSentence.sentence,
+            inputs,
+            showAnswer,
+            isCorrectMap,
+            onInputChange: handleInputChange,
+            inputWidths,
+          })}
+        </div>
       </div>
     </QuestionCard>
   )

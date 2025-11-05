@@ -1,5 +1,5 @@
 export const calculateInputWidth = (
-  measureRef: React.RefObject<HTMLSpanElement>,
+  measureRef: React.RefObject<HTMLSpanElement | null>,
   value: string,
   minWidth: number = 60,
   padding: number = 24

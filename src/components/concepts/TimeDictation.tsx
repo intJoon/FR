@@ -1,8 +1,8 @@
-import { useState, useEffect, type FC } from 'react'
+import { useState, useEffect, useCallback, type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../QuestionCard'
 import { generateTimeExpression } from '../../utils/timeUtils'
-import { stopSpeech, playAudioWithReplay } from '../../utils/speechUtils'
+import { stopSpeech, playAudioWithReplay, createReplayHandler } from '../../utils/speechUtils'
 import { useSettings } from '../../context/SettingsContext'
 import { compareText } from '../../utils/textUtils'
 import { INPUT_FIELD_PROPS } from '../../utils/inputUtils'
@@ -22,13 +22,13 @@ export const TimeDictation: FC<TimeDictationProps> = ({ onAnswerChecked, onStop 
   const [isCorrect, setIsCorrect] = useState(false)
   const [isPlaying, setIsPlaying] = useState(true)
 
-  const playAudio = async (isActiveRef: { current: boolean }) => {
+  const playAudio = useCallback(async (isActiveRef: { current: boolean }) => {
     setIsPlaying(true)
     await playAudioWithReplay(currentProblem.text, settings.replayCount, isActiveRef)
     if (isActiveRef.current) {
       setIsPlaying(false)
     }
-  }
+  }, [currentProblem, settings])
 
   useEffect(() => {
     const isActiveRef = { current: true }
@@ -38,7 +38,7 @@ export const TimeDictation: FC<TimeDictationProps> = ({ onAnswerChecked, onStop 
       stopSpeech()
       setIsPlaying(false)
     }
-  }, [currentProblem, settings.replayCount])
+  }, [playAudio])
 
   const handleCheck = () => {
     if (showAnswer) return
@@ -56,11 +56,7 @@ export const TimeDictation: FC<TimeDictationProps> = ({ onAnswerChecked, onStop 
     setShowAnswer(false)
   }
 
-  const handleReplay = async () => {
-    stopSpeech()
-    await new Promise((resolve) => setTimeout(resolve, 50))
-    await playAudio({ current: true })
-  }
+  const handleReplay = createReplayHandler(playAudio)
 
   return (
     <QuestionCard
@@ -76,7 +72,7 @@ export const TimeDictation: FC<TimeDictationProps> = ({ onAnswerChecked, onStop 
       onNext={handleNext}
       isPlaying={isPlaying}
     >
-      <div className="time-dictation-container">
+      <div className="time-dictation-container concept-container">
         <input
           type="text"
           className={`time-input ${showAnswer ? (isCorrect ? 'correct' : 'incorrect') : ''}`}

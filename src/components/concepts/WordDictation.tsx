@@ -1,12 +1,12 @@
-import { useState, useEffect, useRef, type FC, type ReactNode } from 'react'
+import { useState, useEffect, useCallback, type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../QuestionCard'
 import { generateAllWordDictationSentences, type WordDictationSentence } from '../../utils/wordDictationData'
-import { stopSpeech, playAudioWithReplay } from '../../utils/speechUtils'
+import { stopSpeech, playAudioWithReplay, createReplayHandler } from '../../utils/speechUtils'
 import { useSettings } from '../../context/SettingsContext'
 import { compareText } from '../../utils/textUtils'
-import { calculateInputWidth, INPUT_FIELD_PROPS } from '../../utils/inputUtils'
-import '../../styles/common.css'
+import { useInputWidth } from '../../utils/inputWidthHook'
+import { renderSentenceWithBlanks } from '../../utils/sentenceUtils'
 import './WordDictation.css'
 
 interface WordDictationProps {
@@ -17,19 +17,18 @@ interface WordDictationProps {
 export const WordDictation: FC<WordDictationProps> = ({ onAnswerChecked, onStop }) => {
   const { t } = useTranslation()
   const { settings } = useSettings()
-  const allSentences = generateAllWordDictationSentences()
   const [usedSentenceTexts, setUsedSentenceTexts] = useState<Set<string>>(new Set())
   const [availableSentences] = useState<WordDictationSentence[]>(() => {
-    return [...allSentences].sort(() => Math.random() - 0.5)
+    return generateAllWordDictationSentences().sort(() => Math.random() - 0.5)
   })
-  const [currentSentence, setCurrentSentence] = useState<WordDictationSentence>(() => availableSentences[0])
+  const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(0)
+  const currentSentence = availableSentences[currentSentenceIndex]
   const [inputs, setInputs] = useState<Record<number, string>>({})
   const [showAnswer, setShowAnswer] = useState(false)
   const [isPlaying, setIsPlaying] = useState(true)
-  const measureRef = useRef<HTMLSpanElement>(null)
-  const [inputWidths, setInputWidths] = useState<Record<number, number>>({})
+  const { measureRef, inputWidths, handleInputChange } = useInputWidth(currentSentence, inputs, setInputs)
 
-  const playAudio = async (isActiveRef: { current: boolean }) => {
+  const playAudio = useCallback(async (isActiveRef: { current: boolean }) => {
     setIsPlaying(true)
     let audioText = currentSentence.text
     let blankOffset = 0
@@ -45,7 +44,7 @@ export const WordDictation: FC<WordDictationProps> = ({ onAnswerChecked, onStop 
     if (isActiveRef.current) {
       setIsPlaying(false)
     }
-  }
+  }, [currentSentence, settings])
 
   useEffect(() => {
     const isActiveRef = { current: true }
@@ -55,21 +54,7 @@ export const WordDictation: FC<WordDictationProps> = ({ onAnswerChecked, onStop 
       stopSpeech()
       setIsPlaying(false)
     }
-  }, [currentSentence, settings.replayCount])
-
-  const handleInputChange = (blankIndex: number, value: string) => {
-    setInputs((prev) => ({ ...prev, [blankIndex]: value }))
-    const width = calculateInputWidth(measureRef, value)
-    setInputWidths((prev) => ({ ...prev, [blankIndex]: width }))
-  }
-
-  useEffect(() => {
-    currentSentence.blanks.forEach((_, blankIndex) => {
-      const value = inputs[blankIndex] || '___'
-      const width = calculateInputWidth(measureRef, value)
-      setInputWidths((prev) => ({ ...prev, [blankIndex]: width }))
-    })
-  }, [currentSentence, inputs])
+  }, [playAudio])
 
   const handleCheck = () => {
     if (showAnswer) return
@@ -91,6 +76,13 @@ export const WordDictation: FC<WordDictationProps> = ({ onAnswerChecked, onStop 
     onAnswerChecked?.(allCorrect, currentSentence.text, userAnswerText, correctAnswerText)
   }
 
+  const isCorrectMap: Record<number, boolean | null> = {}
+  if (showAnswer) {
+    currentSentence.blanks.forEach((blank, idx) => {
+      isCorrectMap[idx] = blank.answers.some((answer) => compareText(inputs[idx] || '', answer, settings))
+    })
+  }
+
   const handleNext = () => {
     const newUsedTexts = new Set(usedSentenceTexts)
     newUsedTexts.add(currentSentence.text)
@@ -104,52 +96,13 @@ export const WordDictation: FC<WordDictationProps> = ({ onAnswerChecked, onStop 
     }
 
     const nextSentence = remainingSentences[Math.floor(Math.random() * remainingSentences.length)]
-    setCurrentSentence(nextSentence)
+    const nextIndex = availableSentences.findIndex((s) => s.text === nextSentence.text)
+    setCurrentSentenceIndex(nextIndex)
     setInputs({})
     setShowAnswer(false)
   }
 
-  const handleReplay = async () => {
-    stopSpeech()
-    await new Promise((resolve) => setTimeout(resolve, 50))
-    await playAudio({ current: true })
-  }
-
-  const renderSentence = () => {
-    const parts = currentSentence.text.split('___')
-    const elements: ReactNode[] = []
-
-    parts.forEach((part, index) => {
-      if (index > 0) {
-        const blankIndex = index - 1
-        const blank = currentSentence.blanks[blankIndex]
-        const userInput = inputs[blankIndex] || ''
-        let isCorrect = null
-        if (showAnswer) {
-          isCorrect = blank.answers.some((answer) => compareText(userInput, answer, settings))
-        }
-
-        elements.push(
-          <input
-            key={`blank-${blankIndex}`}
-            type="text"
-            className={`blank-input ${showAnswer && isCorrect !== null ? (isCorrect ? 'correct' : 'incorrect') : ''}`}
-            value={userInput}
-            onChange={(e) => handleInputChange(blankIndex, e.target.value)}
-            placeholder="___"
-            {...INPUT_FIELD_PROPS}
-            disabled={showAnswer}
-            style={{ width: `${inputWidths[blankIndex] || 60}px` }}
-          />
-        )
-      }
-      if (part) {
-        elements.push(<span key={`text-${index}`}>{part}</span>)
-      }
-    })
-
-    return elements
-  }
+  const handleReplay = createReplayHandler(playAudio)
 
   const allCorrect = showAnswer
     ? currentSentence.blanks.every((blank, idx) =>
@@ -175,9 +128,18 @@ export const WordDictation: FC<WordDictationProps> = ({ onAnswerChecked, onStop 
       onNext={handleNext}
       isPlaying={isPlaying}
     >
-      <div className="word-dictation-container">
+      <div className="word-dictation-container concept-container">
         <span ref={measureRef} className="blank-measure" aria-hidden="true" />
-        <div className="sentence-display">{renderSentence()}</div>
+        <div className="sentence-display">
+          {renderSentenceWithBlanks({
+            text: currentSentence.text,
+            inputs,
+            showAnswer,
+            isCorrectMap,
+            onInputChange: handleInputChange,
+            inputWidths,
+          })}
+        </div>
       </div>
     </QuestionCard>
   )

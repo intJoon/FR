@@ -1,14 +1,1 @@
 @import '../../styles/common.css';
-
-.word-dictation-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.sentence-display {
-  gap: 8px;
-}
-
