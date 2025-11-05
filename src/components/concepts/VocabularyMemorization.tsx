@@ -20,7 +20,6 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
   const [category, setCategory] = useState<Category>('months')
   const [inputs, setInputs] = useState<Record<string, string>>({})
   const [showAnswer, setShowAnswer] = useState(false)
-  const [_problemIndex, setProblemIndex] = useState(0)
 
   const getData = () => {
     switch (category) {
@@ -80,7 +79,6 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
       setCategory(nextCategory)
       setInputs({})
       setShowAnswer(false)
-      setProblemIndex((prev) => prev + 1)
     }
   }
 

@@ -1,18 +1,11 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import type { AnswerHistory } from '../types'
 import './Statistics.css'
-
-interface AnswerHistory {
-  question: string
-  userAnswer: string
-  correctAnswer: string
-  isCorrect: boolean
-}
 
 interface StatisticsProps {
   total: number
   correct: number
-  incorrect: number
   history: AnswerHistory[]
   onRestart: () => void
   onClose: () => void
@@ -21,7 +14,6 @@ interface StatisticsProps {
 export const Statistics: React.FC<StatisticsProps> = ({
   total,
   correct,
-  incorrect: _incorrect,
   history,
   onRestart,
   onClose,

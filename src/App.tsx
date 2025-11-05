@@ -9,20 +9,13 @@ import { TimeDictation } from './components/concepts/TimeDictation'
 import { VocabularyMemorization } from './components/concepts/VocabularyMemorization'
 import { ArticleFill } from './components/concepts/ArticleFill'
 import { WordDictation } from './components/concepts/WordDictation'
+import type { AnswerHistory } from './types'
 import './i18n/config'
 import './App.css'
-
-interface AnswerHistory {
-  question: string
-  userAnswer: string
-  correctAnswer: string
-  isCorrect: boolean
-}
 
 interface GameStats {
   total: number
   correct: number
-  incorrect: number
   history: AnswerHistory[]
 }
 
@@ -32,7 +25,7 @@ const AppContent: React.FC = () => {
   const [currentView, setCurrentView] = useState<'home' | 'game' | 'statistics'>('home')
   const [currentConcept, setCurrentConcept] = useState<string | null>(null)
   const [showSettings, setShowSettings] = useState(false)
-  const [stats, setStats] = useState<GameStats>({ total: 0, correct: 0, incorrect: 0, history: [] })
+  const [stats, setStats] = useState<GameStats>({ total: 0, correct: 0, history: [] })
 
   useEffect(() => {
     i18n.changeLanguage(settings.language)
@@ -77,7 +70,7 @@ const AppContent: React.FC = () => {
   const handleSelectConcept = (concept: string) => {
     setCurrentConcept(concept)
     setCurrentView('game')
-    setStats({ total: 0, correct: 0, incorrect: 0, history: [] })
+    setStats({ total: 0, correct: 0, history: [] })
   }
 
   const handleStop = () => {
@@ -89,7 +82,7 @@ const AppContent: React.FC = () => {
   }
 
   const handleRestart = () => {
-    setStats({ total: 0, correct: 0, incorrect: 0, history: [] })
+    setStats({ total: 0, correct: 0, history: [] })
     if (currentConcept) {
       setCurrentView('game')
     } else {
@@ -101,7 +94,6 @@ const AppContent: React.FC = () => {
     setStats((prev) => ({
       total: prev.total + 1,
       correct: prev.correct + (isCorrect ? 1 : 0),
-      incorrect: prev.incorrect + (isCorrect ? 0 : 1),
       history: [
         ...prev.history,
         {
@@ -144,7 +136,6 @@ const AppContent: React.FC = () => {
         <Statistics
           total={stats.total}
           correct={stats.correct}
-          incorrect={stats.incorrect}
           history={stats.history}
           onRestart={handleRestart}
           onClose={() => setCurrentView('home')}

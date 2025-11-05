@@ -19,7 +19,6 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
   const [input, setInput] = useState('')
   const [showAnswer, setShowAnswer] = useState(false)
   const [isCorrect, setIsCorrect] = useState(false)
-  const [_problemIndex, setProblemIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
 
   useEffect(() => {
@@ -63,7 +62,6 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
     setCurrentProblem(newProblem)
     setInput('')
     setShowAnswer(false)
-    setProblemIndex((prev) => prev + 1)
   }
 
   const handleReplay = async () => {

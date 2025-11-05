@@ -24,46 +24,8 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   const [inputs, setInputs] = useState<Record<number, string>>({})
   const [showAnswer, setShowAnswer] = useState(false)
   const [isPlaying, setIsPlaying] = useState(true)
-  const [_problemIndex, setProblemIndex] = useState(0)
   const measureRef = useRef<HTMLSpanElement>(null)
   const [inputWidths, setInputWidths] = useState<Record<number, number>>({})
-
-  useEffect(() => {
-    let isActive = true
-    const playAudio = async () => {
-      try {
-        setIsPlaying(true)
-        let audioText = currentSentence.text
-        let blankOffset = 0
-        currentSentence.blanks.forEach((blank) => {
-          const answer = blank.answers[0]
-          const blankPos = audioText.indexOf('___', blankOffset)
-          if (blankPos !== -1) {
-            audioText = audioText.substring(0, blankPos) + answer + audioText.substring(blankPos + 3)
-            blankOffset = blankPos + answer.length
-          }
-        })
-        for (let i = 0; i < settings.replayCount; i++) {
-          if (!isActive) break
-          await speakFrench(audioText)
-          if (i < settings.replayCount - 1 && isActive) {
-            await new Promise((resolve) => setTimeout(resolve, 500))
-          }
-        }
-      } finally {
-        if (isActive) {
-          await new Promise((resolve) => setTimeout(resolve, 100))
-          setIsPlaying(false)
-        }
-      }
-    }
-    playAudio()
-    return () => {
-      isActive = false
-      stopSpeech()
-      setIsPlaying(false)
-    }
-  }, [currentSentence, settings.replayCount])
 
   const playAudio = async () => {
     let isActive = true
@@ -93,6 +55,16 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
       }
     }
   }
+
+  useEffect(() => {
+    let isActive = true
+    playAudio()
+    return () => {
+      isActive = false
+      stopSpeech()
+      setIsPlaying(false)
+    }
+  }, [currentSentence, settings.replayCount])
 
   const handleInputChange = (blankIndex: number, value: string) => {
     setInputs((prev) => ({ ...prev, [blankIndex]: value }))
@@ -151,7 +123,6 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
     setCurrentSentence(nextSentence)
     setInputs({})
     setShowAnswer(false)
-    setProblemIndex((prev) => prev + 1)
   }
 
   const handleReplay = async () => {

@@ -20,8 +20,6 @@
     },
     "skillImprovement": {
       "title": "提升實力",
-      "pureKeyboard": "純鍵盤",
-      "pureKeyboardDesc": "關閉自動完成",
       "caseSensitive": "大小寫檢查",
       "caseSensitiveDesc": "檢查大小寫",
       "accentSensitive": "重音符號檢查",

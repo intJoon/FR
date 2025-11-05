@@ -25,9 +25,12 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [settings, setSettings] = useState<Settings>(() => {
     const saved = localStorage.getItem('french-learning-settings')
     if (saved) {
-      const parsed = JSON.parse(saved)
-      const { pureKeyboard, ...rest } = parsed
-      return { ...defaultSettings, ...rest }
+      try {
+        const parsed = JSON.parse(saved)
+        return { ...defaultSettings, ...parsed }
+      } catch {
+        return defaultSettings
+      }
     }
     return defaultSettings
   })

@@ -20,8 +20,6 @@
     },
     "skillImprovement": {
       "title": "실력 향상",
-      "pureKeyboard": "순수 키보드",
-      "pureKeyboardDesc": "자동완성 끄기",
       "caseSensitive": "대소문자 검사",
       "caseSensitiveDesc": "대소문자 확인",
       "accentSensitive": "악센트 검사",

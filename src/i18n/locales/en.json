@@ -20,8 +20,6 @@
     },
     "skillImprovement": {
       "title": "Skill Improvement",
-      "pureKeyboard": "Pure Keyboard",
-      "pureKeyboardDesc": "Disable auto-completion",
       "caseSensitive": "Case Sensitive",
       "caseSensitiveDesc": "Check capitalization",
       "accentSensitive": "Accent Sensitive",

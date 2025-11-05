@@ -20,8 +20,6 @@
     },
     "skillImprovement": {
       "title": "Amélioration des Compétences",
-      "pureKeyboard": "Clavier Pur",
-      "pureKeyboardDesc": "Désactiver l'auto-complétion",
       "caseSensitive": "Sensible à la Casse",
       "caseSensitiveDesc": "Vérifier la casse",
       "accentSensitive": "Sensible aux Accents",
