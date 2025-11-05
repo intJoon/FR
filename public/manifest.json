@@ -1,0 +1,21 @@
+{
+  "name": "French Learning",
+  "short_name": "French Learning",
+  "description": "프랑스어 학습을 위한 웹 애플리케이션",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#532a97",
+  "theme_color": "#532a97",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/france-flag.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "learning"],
+  "lang": "ko",
+  "dir": "ltr"
+}
