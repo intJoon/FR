@@ -5,7 +5,6 @@ import './QuestionCard.css'
 
 interface QuestionCardProps {
   title: string
-  instruction?: string
   children: React.ReactNode
   onCheck: () => void
   onStop: () => void
@@ -20,7 +19,6 @@ interface QuestionCardProps {
 
 export const QuestionCard: React.FC<QuestionCardProps> = ({
   title,
-  instruction,
   children,
   onCheck,
   onStop,

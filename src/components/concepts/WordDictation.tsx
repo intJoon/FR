@@ -57,10 +57,8 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   }
 
   useEffect(() => {
-    let isActive = true
     playAudio()
     return () => {
-      isActive = false
       stopSpeech()
       setIsPlaying(false)
     }
@@ -183,7 +181,6 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   return (
     <QuestionCard
       title={t('wordDictation.title')}
-      instruction={t('wordDictation.instruction')}
       onCheck={handleCheck}
       onStop={onStop || (() => {})}
       showAnswer={showAnswer}

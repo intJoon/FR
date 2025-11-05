@@ -88,7 +88,6 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
   return (
     <QuestionCard
       title={t('timeDictation.title')}
-      instruction={t('timeDictation.instruction')}
       onCheck={handleCheck}
       onStop={onStop || (() => {})}
       showAnswer={showAnswer}

@@ -96,7 +96,6 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
   return (
     <QuestionCard
       title={t('vocabulary.title')}
-      instruction={`${t('vocabulary.instruction')} - ${getCategoryTitle()}`}
       onCheck={handleCheck}
       onStop={onStop || (() => {})}
       showAnswer={showAnswer}

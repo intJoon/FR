@@ -152,7 +152,6 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
   return (
     <QuestionCard
       title={t('articles.title')}
-      instruction={t('articles.instruction')}
       onCheck={handleCheck}
       onStop={onStop || (() => {})}
       showAnswer={showAnswer}
