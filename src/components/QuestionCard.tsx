@@ -5,6 +5,7 @@ import './QuestionCard.css'
 
 interface QuestionCardProps {
   title: string
+  instruction?: string
   children: React.ReactNode
   onCheck: () => void
   onStop: () => void
@@ -19,6 +20,7 @@ interface QuestionCardProps {
 
 export const QuestionCard: React.FC<QuestionCardProps> = ({
   title,
+  instruction,
   children,
   onCheck,
   onStop,
@@ -71,6 +73,10 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           </button>
         </div>
       </div>
+
+      {instruction && (
+        <div className="instruction">{instruction}</div>
+      )}
 
       <div className="question-content">
         {children}

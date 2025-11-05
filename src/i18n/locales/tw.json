@@ -32,7 +32,7 @@
   },
   "timeDictation": {
     "title": "時間聽寫",
-    "instruction": "聽時間並以24小時制格式（4位數字）寫下"
+    "instruction": "以24小時制(4位數字)聽寫"
   },
   "vocabulary": {
     "title": "單字默寫",
@@ -52,7 +52,7 @@
   },
   "wordDictation": {
     "title": "單字聽寫",
-    "instruction": "聽並寫下缺少的單字"
+    "instruction": "聽寫缺少的單字"
   },
   "statistics": {
     "title": "統計",

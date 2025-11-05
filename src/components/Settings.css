@@ -219,7 +219,7 @@
   display: flex;
   gap: 12px;
   flex-shrink: 0;
-}
+  }
 
 .close-settings-button {
   flex: 1;
@@ -233,11 +233,11 @@
   min-height: 44px;
   background: #95a5a6;
   color: white;
-}
+  }
 
 .close-settings-button:active {
   background: #7f8c8d;
   transform: translateY(-1px);
-}
+  }
 
 

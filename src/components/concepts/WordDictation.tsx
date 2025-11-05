@@ -181,6 +181,7 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   return (
     <QuestionCard
       title={t('wordDictation.title')}
+      instruction={t('wordDictation.instruction')}
       onCheck={handleCheck}
       onStop={onStop || (() => {})}
       showAnswer={showAnswer}

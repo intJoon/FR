@@ -68,10 +68,9 @@
 .instruction {
   color: #7f8c8d;
   font-size: 14px;
-  margin: 16px 0 0 0;
-  padding-top: 16px;
-  border-top: 1px solid #e9ecef;
+  padding: 10px 24px 10px 24px;
   line-height: 1.5;
+  flex-shrink: 0;
 }
 
 .stop-button {
