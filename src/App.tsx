@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SettingsProvider, useSettings } from './context/SettingsContext'
 import { Home } from './components/Home'
@@ -19,7 +19,7 @@ interface GameStats {
   history: AnswerHistory[]
 }
 
-const AppContent: React.FC = () => {
+const AppContent: FC = () => {
   const { i18n } = useTranslation()
   const { settings } = useSettings()
   const [currentView, setCurrentView] = useState<'home' | 'game' | 'statistics'>('home')
@@ -31,13 +31,11 @@ const AppContent: React.FC = () => {
     i18n.changeLanguage(settings.language)
     
     const langMap: Record<string, string> = {
-      en: 'en',
       ko: 'ko',
       tw: 'zh-TW',
-      fr: 'fr'
     }
     
-    document.documentElement.lang = langMap[settings.language] || 'en'
+    document.documentElement.lang = langMap[settings.language] || settings.language
     
     const updateMeta = () => {
       try {
@@ -111,7 +109,7 @@ const AppContent: React.FC = () => {
       case 'time':
         return <TimeDictation onAnswerChecked={handleAnswerChecked} onStop={handleStop} />
       case 'vocabulary':
-        return <VocabularyMemorization onAnswerChecked={handleAnswerChecked} onStop={handleStop} onComplete={handleStop} />
+        return <VocabularyMemorization onAnswerChecked={handleAnswerChecked} onStop={handleStop} />
       case 'articles':
         return <ArticleFill onAnswerChecked={handleAnswerChecked} onStop={handleStop} />
       case 'word':
@@ -121,18 +119,12 @@ const AppContent: React.FC = () => {
     }
   }
 
-  if (currentView === 'home') {
-    return (
-      <>
+  return (
+    <>
+      {currentView === 'home' && (
         <Home onSelectConcept={handleSelectConcept} onOpenSettings={() => setShowSettings(true)} />
-        {showSettings && <Settings onClose={() => setShowSettings(false)} />}
-      </>
-    )
-  }
-
-  if (currentView === 'statistics') {
-    return (
-      <>
+      )}
+      {currentView === 'statistics' && (
         <Statistics
           total={stats.total}
           correct={stats.correct}
@@ -140,20 +132,18 @@ const AppContent: React.FC = () => {
           onRestart={handleRestart}
           onClose={() => setCurrentView('home')}
         />
-        {showSettings && <Settings onClose={() => setShowSettings(false)} />}
-      </>
-    )
-  }
-
-  return (
-    <div className="app-game">
-      {renderConcept()}
+      )}
+      {currentView === 'game' && (
+        <div className="app-game">
+          {renderConcept()}
+        </div>
+      )}
       {showSettings && <Settings onClose={() => setShowSettings(false)} />}
-    </div>
+    </>
   )
 }
 
-const App: React.FC = () => {
+const App: FC = () => {
   return (
     <SettingsProvider>
       <AppContent />

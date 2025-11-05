@@ -43,12 +43,7 @@
   },
   "articles": {
     "title": "Article Fill-in",
-    "instruction": "Fill in the missing articles",
-    "hint": "Tap a word to see information",
-    "explanation": "Explanation",
-    "masculine": "Masculine",
-    "feminine": "Feminine",
-    "both": "Masculine/Feminine"
+    "instruction": "Fill in the missing articles"
   },
   "wordDictation": {
     "title": "Word Dictation",
@@ -67,7 +62,6 @@
   "common": {
     "check": "Check Answer",
     "next": "Next",
-    "previous": "Previous",
     "stop": "Stop",
     "restart": "Restart",
     "replay": "Replay",

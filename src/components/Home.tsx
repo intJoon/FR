@@ -1,4 +1,4 @@
-import React from 'react'
+import { type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LanguageSelector } from './LanguageSelector'
 import './Home.css'
@@ -8,7 +8,7 @@ interface HomeProps {
   onOpenSettings: () => void
 }
 
-export const Home: React.FC<HomeProps> = ({ onSelectConcept, onOpenSettings }) => {
+export const Home: FC<HomeProps> = ({ onSelectConcept, onOpenSettings }) => {
   const { t } = useTranslation()
 
   const concepts = [

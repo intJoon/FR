@@ -5,4 +5,3 @@ export interface AnswerHistory {
   isCorrect: boolean
 }
 
-

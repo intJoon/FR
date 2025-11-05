@@ -43,12 +43,7 @@
   },
   "articles": {
     "title": "관사 채우기",
-    "instruction": "빈칸에 관사를 채우세요",
-    "hint": "단어를 누르면 정보를 볼 수 있습니다",
-    "explanation": "설명",
-    "masculine": "남성형",
-    "feminine": "여성형",
-    "both": "남성형/여성형"
+    "instruction": "빈칸에 관사를 채우세요"
   },
   "wordDictation": {
     "title": "단어 받아쓰기",
@@ -67,7 +62,6 @@
   "common": {
     "check": "정답 확인",
     "next": "다음",
-    "previous": "이전",
     "stop": "그만하기",
     "restart": "다시 시작",
     "replay": "다시 듣기",

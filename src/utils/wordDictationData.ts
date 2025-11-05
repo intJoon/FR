@@ -264,9 +264,3 @@ export const generateAllWordDictationSentences = (): WordDictationSentence[] => 
   return allTemplates.map(convertTemplateToSentence)
 }
 
-export const generateWordDictationSentence = (): WordDictationSentence => {
-  const allTemplates = [...baseTemplates, ...generateTemplatesFromWordPool()]
-  
-  const template = allTemplates[Math.floor(Math.random() * allTemplates.length)]
-  return convertTemplateToSentence(template)
-}

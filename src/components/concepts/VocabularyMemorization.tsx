@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState, type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../QuestionCard'
 import { months, seasons, days } from '../../utils/vocabularyData'
 import { useSettings } from '../../context/SettingsContext'
 import { compareText } from '../../utils/textUtils'
+import { INPUT_FIELD_PROPS } from '../../utils/inputUtils'
 import './VocabularyMemorization.css'
 
 type Category = 'months' | 'seasons' | 'days'
@@ -11,10 +12,9 @@ type Category = 'months' | 'seasons' | 'days'
 interface VocabularyMemorizationProps {
   onAnswerChecked?: (isCorrect: boolean, question?: string, userAnswer?: string, correctAnswer?: string) => void
   onStop?: () => void
-  onComplete?: () => void
 }
 
-export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ onAnswerChecked, onStop, onComplete }) => {
+export const VocabularyMemorization: FC<VocabularyMemorizationProps> = ({ onAnswerChecked, onStop }) => {
   const { t } = useTranslation()
   const { settings } = useSettings()
   const [category, setCategory] = useState<Category>('months')
@@ -72,8 +72,7 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
     const nextIndex = currentIndex + 1
     
     if (nextIndex >= categories.length) {
-      // 3개 문제 모두 완료 (0, 1, 2 = months, seasons, days)
-      onComplete?.()
+      onStop?.()
     } else {
       const nextCategory = categories[nextIndex]
       setCategory(nextCategory)
@@ -98,7 +97,7 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
       title={t('vocabulary.title')}
       instruction={`${t('vocabulary.instruction')} - ${getCategoryTitle()}`}
       onCheck={handleCheck}
-      onStop={onStop || (() => {})}
+      onStop={onStop}
       showAnswer={showAnswer}
       answer={answerText}
       isCorrect={allCorrect}
@@ -117,10 +116,7 @@ export const VocabularyMemorization: React.FC<VocabularyMemorizationProps> = ({ 
                   value={userInput}
                   onChange={(e) => handleInputChange(index, e.target.value)}
                   placeholder={`${index + 1}`}
-                  autoComplete="off"
-                  autoCapitalize="off"
-                  autoCorrect="off"
-                  spellCheck={false}
+                  {...INPUT_FIELD_PROPS}
                   disabled={showAnswer}
                 />
               </div>

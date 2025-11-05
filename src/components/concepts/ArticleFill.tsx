@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, type FC, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../QuestionCard'
 import { articleSentences, type ArticleSentence } from '../../utils/articleData'
 import { useSettings } from '../../context/SettingsContext'
 import { compareText } from '../../utils/textUtils'
+import { calculateInputWidth, INPUT_FIELD_PROPS } from '../../utils/inputUtils'
+import '../../styles/common.css'
 import './ArticleFill.css'
 
 interface ArticleFillProps {
@@ -11,17 +13,14 @@ interface ArticleFillProps {
   onStop?: () => void
 }
 
-export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onStop }) => {
+export const ArticleFill: FC<ArticleFillProps> = ({ onAnswerChecked, onStop }) => {
   const { t } = useTranslation()
   const { settings } = useSettings()
   const [usedIndices, setUsedIndices] = useState<Set<number>>(new Set())
-  const [availableIndices] = useState<number[]>(
-    articleSentences.map((_, index) => index).sort(() => Math.random() - 0.5)
-  )
-  const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(() => {
-    const indices = articleSentences.map((_, index) => index).sort(() => Math.random() - 0.5)
-    return indices[0]
+  const [availableIndices] = useState<number[]>(() => {
+    return articleSentences.map((_, index) => index).sort(() => Math.random() - 0.5)
   })
+  const [currentSentenceIndex, setCurrentSentenceIndex] = useState<number>(() => availableIndices[0])
   const [currentSentence, setCurrentSentence] = useState<ArticleSentence>(
     articleSentences[currentSentenceIndex]
   )
@@ -32,23 +31,16 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
 
   const handleInputChange = (blankIndex: number, value: string) => {
     setInputs((prev) => ({ ...prev, [blankIndex]: value }))
-    
-    if (measureRef.current) {
-      measureRef.current.textContent = value || '___'
-      const width = measureRef.current.offsetWidth
-      setInputWidths((prev) => ({ ...prev, [blankIndex]: Math.max(width + 24, 60) }))
-    }
+    const width = calculateInputWidth(measureRef, value)
+    setInputWidths((prev) => ({ ...prev, [blankIndex]: width }))
   }
 
   useEffect(() => {
-    if (measureRef.current) {
-      currentSentence.blanks.forEach((_, blankIndex) => {
-        const value = inputs[blankIndex] || '___'
-        measureRef.current!.textContent = value
-        const width = measureRef.current!.offsetWidth
-        setInputWidths((prev) => ({ ...prev, [blankIndex]: Math.max(width + 24, 60) }))
-      })
-    }
+    currentSentence.blanks.forEach((_, blankIndex) => {
+      const value = inputs[blankIndex] || '___'
+      const width = calculateInputWidth(measureRef, value)
+      setInputWidths((prev) => ({ ...prev, [blankIndex]: width }))
+    })
   }, [currentSentence, inputs])
 
   const handleCheck = () => {
@@ -91,7 +83,7 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
 
   const renderSentence = () => {
     const parts = currentSentence.sentence.split('___')
-    const elements: React.ReactNode[] = []
+    const elements: ReactNode[] = []
 
     parts.forEach((part, index) => {
       if (index > 0) {
@@ -106,14 +98,11 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
           <span key={`blank-${blankIndex}`} className="blank-container">
             <input
               type="text"
-              className={`article-input ${showAnswer && isCorrect !== null ? (isCorrect ? 'correct' : 'incorrect') : ''}`}
+              className={`blank-input ${showAnswer && isCorrect !== null ? (isCorrect ? 'correct' : 'incorrect') : ''}`}
               value={userInput}
               onChange={(e) => handleInputChange(blankIndex, e.target.value)}
               placeholder="___"
-              autoComplete="off"
-              autoCapitalize="off"
-              autoCorrect="off"
-              spellCheck={false}
+              {...INPUT_FIELD_PROPS}
               disabled={showAnswer}
               style={{ width: `${inputWidths[blankIndex] || 60}px` }}
             />
@@ -121,20 +110,7 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
         )
       }
       if (part) {
-        const words = part.split(' ')
-        words.forEach((word, wordIndex) => {
-          if (word.trim()) {
-            const wordKey = `word-${index}-${wordIndex}`
-            elements.push(
-              <span key={wordKey}>
-                {word}
-              </span>
-            )
-            if (wordIndex < words.length - 1) {
-              elements.push(<span key={`space-${wordKey}`}> </span>)
-            }
-          }
-        })
+        elements.push(<span key={`text-${index}`}>{part}</span>)
       }
     })
 
@@ -154,14 +130,14 @@ export const ArticleFill: React.FC<ArticleFillProps> = ({ onAnswerChecked, onSto
       title={t('articles.title')}
       instruction={t('articles.instruction')}
       onCheck={handleCheck}
-      onStop={onStop || (() => {})}
+      onStop={onStop}
       showAnswer={showAnswer}
       answer={answerText}
       isCorrect={allCorrect}
       onNext={handleNext}
     >
       <div className="article-container">
-        <span ref={measureRef} className="article-measure" aria-hidden="true" />
+        <span ref={measureRef} className="blank-measure" aria-hidden="true" />
         <div className="sentence-display">{renderSentence()}</div>
       </div>
     </QuestionCard>

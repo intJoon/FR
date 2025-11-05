@@ -11,7 +11,7 @@ i18n
     resources: {
       en: { translation: enTranslations },
       ko: { translation: koTranslations },
-      'tw': { translation: zhTwTranslations },
+      tw: { translation: zhTwTranslations },
       fr: { translation: frTranslations },
     },
     lng: 'en',
@@ -22,4 +22,3 @@ i18n
   })
 
 export default i18n
-

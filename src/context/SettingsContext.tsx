@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect, type FC, type ReactNode } from 'react'
 
 interface Settings {
   language: 'en' | 'ko' | 'tw' | 'fr'
@@ -21,7 +21,7 @@ const defaultSettings: Settings = {
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined)
 
-export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const SettingsProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [settings, setSettings] = useState<Settings>(() => {
     const saved = localStorage.getItem('french-learning-settings')
     if (saved) {

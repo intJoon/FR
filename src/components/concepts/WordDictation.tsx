@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, type FC, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../QuestionCard'
 import { generateAllWordDictationSentences, type WordDictationSentence } from '../../utils/wordDictationData'
-import { speakFrench, stopSpeech } from '../../utils/speechUtils'
+import { stopSpeech, playAudioWithReplay } from '../../utils/speechUtils'
 import { useSettings } from '../../context/SettingsContext'
 import { compareText } from '../../utils/textUtils'
+import { calculateInputWidth, INPUT_FIELD_PROPS } from '../../utils/inputUtils'
+import '../../styles/common.css'
 import './WordDictation.css'
 
 interface WordDictationProps {
@@ -12,7 +14,7 @@ interface WordDictationProps {
   onStop?: () => void
 }
 
-export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, onStop }) => {
+export const WordDictation: FC<WordDictationProps> = ({ onAnswerChecked, onStop }) => {
   const { t } = useTranslation()
   const { settings } = useSettings()
   const allSentences = generateAllWordDictationSentences()
@@ -27,38 +29,29 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   const measureRef = useRef<HTMLSpanElement>(null)
   const [inputWidths, setInputWidths] = useState<Record<number, number>>({})
 
-  const playAudio = async () => {
-    let isActive = true
-    try {
-      setIsPlaying(true)
-      let audioText = currentSentence.text
-      let blankOffset = 0
-      currentSentence.blanks.forEach((blank) => {
-        const answer = blank.answers[0]
-        const blankPos = audioText.indexOf('___', blankOffset)
-        if (blankPos !== -1) {
-          audioText = audioText.substring(0, blankPos) + answer + audioText.substring(blankPos + 3)
-          blankOffset = blankPos + answer.length
-        }
-      })
-      for (let i = 0; i < settings.replayCount; i++) {
-        if (!isActive) break
-        await speakFrench(audioText)
-        if (i < settings.replayCount - 1 && isActive) {
-          await new Promise((resolve) => setTimeout(resolve, 500))
-        }
+  const playAudio = async (isActiveRef: { current: boolean }) => {
+    setIsPlaying(true)
+    let audioText = currentSentence.text
+    let blankOffset = 0
+    currentSentence.blanks.forEach((blank) => {
+      const answer = blank.answers[0]
+      const blankPos = audioText.indexOf('___', blankOffset)
+      if (blankPos !== -1) {
+        audioText = audioText.substring(0, blankPos) + answer + audioText.substring(blankPos + 3)
+        blankOffset = blankPos + answer.length
       }
-    } finally {
-      if (isActive) {
-        await new Promise((resolve) => setTimeout(resolve, 100))
-        setIsPlaying(false)
-      }
+    })
+    await playAudioWithReplay(audioText, settings.replayCount, isActiveRef)
+    if (isActiveRef.current) {
+      setIsPlaying(false)
     }
   }
 
   useEffect(() => {
-    playAudio()
+    const isActiveRef = { current: true }
+    playAudio(isActiveRef)
     return () => {
+      isActiveRef.current = false
       stopSpeech()
       setIsPlaying(false)
     }
@@ -66,23 +59,16 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
 
   const handleInputChange = (blankIndex: number, value: string) => {
     setInputs((prev) => ({ ...prev, [blankIndex]: value }))
-    
-    if (measureRef.current) {
-      measureRef.current.textContent = value || '___'
-      const width = measureRef.current.offsetWidth
-      setInputWidths((prev) => ({ ...prev, [blankIndex]: Math.max(width + 24, 60) }))
-    }
+    const width = calculateInputWidth(measureRef, value)
+    setInputWidths((prev) => ({ ...prev, [blankIndex]: width }))
   }
 
   useEffect(() => {
-    if (measureRef.current) {
-      currentSentence.blanks.forEach((_, blankIndex) => {
-        const value = inputs[blankIndex] || '___'
-        measureRef.current!.textContent = value
-        const width = measureRef.current!.offsetWidth
-        setInputWidths((prev) => ({ ...prev, [blankIndex]: Math.max(width + 24, 60) }))
-      })
-    }
+    currentSentence.blanks.forEach((_, blankIndex) => {
+      const value = inputs[blankIndex] || '___'
+      const width = calculateInputWidth(measureRef, value)
+      setInputWidths((prev) => ({ ...prev, [blankIndex]: width }))
+    })
   }, [currentSentence, inputs])
 
   const handleCheck = () => {
@@ -126,12 +112,12 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   const handleReplay = async () => {
     stopSpeech()
     await new Promise((resolve) => setTimeout(resolve, 50))
-    playAudio()
+    await playAudio({ current: true })
   }
 
   const renderSentence = () => {
     const parts = currentSentence.text.split('___')
-    const elements: React.ReactNode[] = []
+    const elements: ReactNode[] = []
 
     parts.forEach((part, index) => {
       if (index > 0) {
@@ -147,14 +133,11 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
           <input
             key={`blank-${blankIndex}`}
             type="text"
-            className={`word-input ${showAnswer && isCorrect !== null ? (isCorrect ? 'correct' : 'incorrect') : ''}`}
+            className={`blank-input ${showAnswer && isCorrect !== null ? (isCorrect ? 'correct' : 'incorrect') : ''}`}
             value={userInput}
             onChange={(e) => handleInputChange(blankIndex, e.target.value)}
             placeholder="___"
-            autoComplete="off"
-            autoCapitalize="off"
-            autoCorrect="off"
-            spellCheck={false}
+            {...INPUT_FIELD_PROPS}
             disabled={showAnswer}
             style={{ width: `${inputWidths[blankIndex] || 60}px` }}
           />
@@ -183,7 +166,7 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
       title={t('wordDictation.title')}
       instruction={t('wordDictation.instruction')}
       onCheck={handleCheck}
-      onStop={onStop || (() => {})}
+      onStop={onStop}
       showAnswer={showAnswer}
       answer={answerText}
       isCorrect={allCorrect}
@@ -193,7 +176,7 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
       isPlaying={isPlaying}
     >
       <div className="word-dictation-container">
-        <span ref={measureRef} className="word-measure" aria-hidden="true" />
+        <span ref={measureRef} className="blank-measure" aria-hidden="true" />
         <div className="sentence-display">{renderSentence()}</div>
       </div>
     </QuestionCard>

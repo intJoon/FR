@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, type FC, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { isSpeaking } from '../utils/speechUtils'
 import './QuestionCard.css'
@@ -6,11 +6,11 @@ import './QuestionCard.css'
 interface QuestionCardProps {
   title: string
   instruction?: string
-  children: React.ReactNode
+  children: ReactNode
   onCheck: () => void
-  onStop: () => void
+  onStop?: () => void
   showAnswer: boolean
-  answer?: string | React.ReactNode
+  answer?: string | ReactNode
   isCorrect?: boolean
   showReplay?: boolean
   onReplay?: () => void
@@ -18,7 +18,7 @@ interface QuestionCardProps {
   isPlaying?: boolean
 }
 
-export const QuestionCard: React.FC<QuestionCardProps> = ({
+export const QuestionCard: FC<QuestionCardProps> = ({
   title,
   instruction,
   children,
@@ -64,7 +64,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           <h2>{title}</h2>
           {shouldShowIndicator && <div className="playing-indicator">{t('common.playing')}</div>}
         </div>
-          <button className="stop-button" onClick={onStop} aria-label={t('common.stop')}>
+          <button className="stop-button" onClick={onStop ?? (() => {})} aria-label={t('common.stop')}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
               <polyline points="16 17 21 12 16 7"></polyline>

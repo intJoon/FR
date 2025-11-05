@@ -1,4 +1,4 @@
-import React from 'react'
+import { type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSettings } from '../context/SettingsContext'
 import './Settings.css'
@@ -7,7 +7,7 @@ interface SettingsProps {
   onClose: () => void
 }
 
-export const Settings: React.FC<SettingsProps> = ({ onClose }) => {
+export const Settings: FC<SettingsProps> = ({ onClose }) => {
   const { t } = useTranslation()
   const { settings, updateSettings } = useSettings()
 

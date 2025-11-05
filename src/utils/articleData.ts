@@ -1,67 +1,6 @@
 export interface ArticleSentence {
   sentence: string
   blanks: Array<{ index: number; answer: string; gender: 'm' | 'f' | 'm/f' | null }>
-  hint?: { word: string; gender: 'm' | 'f'; translation: string }
-  articleRelatedWords?: Set<string>
-}
-
-const articleWords = new Set(['le', 'la', 'les', 'l\'', 'un', 'une', 'des', 'du', 'de', 'de la', 'de l\'', 'au', 'aux', 'à la', 'à l\'', 'à le'])
-
-const isArticle = (answer: string): boolean => {
-  const normalized = answer.toLowerCase().trim()
-  return articleWords.has(normalized) || normalized.startsWith('l\'') || normalized.startsWith('de l\'') || normalized.startsWith('à l\'')
-}
-
-const extractArticleRelatedWords = (sentence: ArticleSentence): Set<string> => {
-  const relatedWords = new Set<string>()
-  const parts = sentence.sentence.split('___')
-  
-  sentence.blanks.forEach((blank, blankIndex) => {
-    if (!isArticle(blank.answer)) return
-    
-    const partAfterBlank = parts[blankIndex + 1]
-    if (!partAfterBlank) return
-    
-    const words = partAfterBlank.trim().split(/\s+/)
-    if (words.length > 0) {
-      const firstWord = words[0].replace(/[.,!?;:']/g, '').trim().toLowerCase()
-      if (firstWord) {
-        relatedWords.add(firstWord)
-        
-        if (firstWord.endsWith('s') && firstWord.length > 1) {
-          relatedWords.add(firstWord.slice(0, -1))
-        }
-        if (firstWord.endsWith('es') && firstWord.length > 2) {
-          relatedWords.add(firstWord.slice(0, -2))
-        }
-      }
-    }
-    
-    const partBeforeBlank = parts[blankIndex]
-    if (partBeforeBlank) {
-      const wordsBefore = partBeforeBlank.trim().split(/\s+/)
-      const lastWordBefore = wordsBefore[wordsBefore.length - 1]?.toLowerCase().trim()
-      
-      if (lastWordBefore === 'à' || lastWordBefore === 'de' || lastWordBefore === 'pour' || lastWordBefore === 'avec' || lastWordBefore === 'sans' || lastWordBefore === 'par') {
-        const wordsAfter = partAfterBlank.trim().split(/\s+/)
-        if (wordsAfter.length > 0) {
-          const firstWordAfter = wordsAfter[0].replace(/[.,!?;:']/g, '').trim().toLowerCase()
-          if (firstWordAfter) {
-            relatedWords.add(firstWordAfter)
-            
-            if (firstWordAfter.endsWith('s') && firstWordAfter.length > 1) {
-              relatedWords.add(firstWordAfter.slice(0, -1))
-            }
-            if (firstWordAfter.endsWith('es') && firstWordAfter.length > 2) {
-              relatedWords.add(firstWordAfter.slice(0, -2))
-            }
-          }
-        }
-      }
-    }
-  })
-  
-  return relatedWords
 }
 
 export const articleSentences: ArticleSentence[] = [
@@ -3063,7 +3002,3 @@ export const articleSentences: ArticleSentence[] = [
     ],
   },
 ]
-
-articleSentences.forEach((sentence) => {
-  sentence.articleRelatedWords = extractArticleRelatedWords(sentence)
-})

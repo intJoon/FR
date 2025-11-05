@@ -36,3 +36,23 @@ export const stopSpeech = () => {
   }
 }
 
+export const playAudioWithReplay = async (
+  text: string,
+  replayCount: number,
+  isActiveRef: { current: boolean }
+): Promise<void> => {
+  try {
+    for (let i = 0; i < replayCount; i++) {
+      if (!isActiveRef.current) break
+      await speakFrench(text)
+      if (i < replayCount - 1 && isActiveRef.current) {
+        await new Promise((resolve) => setTimeout(resolve, 500))
+      }
+    }
+  } finally {
+    if (isActiveRef.current) {
+      await new Promise((resolve) => setTimeout(resolve, 100))
+    }
+  }
+}
+

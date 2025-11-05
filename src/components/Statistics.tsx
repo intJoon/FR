@@ -1,4 +1,4 @@
-import React from 'react'
+import { type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { AnswerHistory } from '../types'
 import './Statistics.css'
@@ -11,7 +11,7 @@ interface StatisticsProps {
   onClose: () => void
 }
 
-export const Statistics: React.FC<StatisticsProps> = ({
+export const Statistics: FC<StatisticsProps> = ({
   total,
   correct,
   history,

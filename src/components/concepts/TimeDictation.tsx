@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { QuestionCard } from '../QuestionCard'
 import { generateTimeExpression } from '../../utils/timeUtils'
-import { speakFrench, stopSpeech } from '../../utils/speechUtils'
+import { stopSpeech, playAudioWithReplay } from '../../utils/speechUtils'
 import { useSettings } from '../../context/SettingsContext'
 import { compareText } from '../../utils/textUtils'
+import { INPUT_FIELD_PROPS } from '../../utils/inputUtils'
 import './TimeDictation.css'
 
 interface TimeDictationProps {
@@ -12,7 +13,7 @@ interface TimeDictationProps {
   onStop?: () => void
 }
 
-export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, onStop }) => {
+export const TimeDictation: FC<TimeDictationProps> = ({ onAnswerChecked, onStop }) => {
   const { t } = useTranslation()
   const { settings } = useSettings()
   const [currentProblem, setCurrentProblem] = useState(generateTimeExpression())
@@ -21,28 +22,19 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
   const [isCorrect, setIsCorrect] = useState(false)
   const [isPlaying, setIsPlaying] = useState(true)
 
-  useEffect(() => {
-    let isActive = true
-    const playAudio = async () => {
-      try {
-        setIsPlaying(true)
-        for (let i = 0; i < settings.replayCount; i++) {
-          if (!isActive) break
-          await speakFrench(currentProblem.text)
-          if (i < settings.replayCount - 1 && isActive) {
-            await new Promise((resolve) => setTimeout(resolve, 500))
-          }
-        }
-      } finally {
-        if (isActive) {
-          await new Promise((resolve) => setTimeout(resolve, 100))
-          setIsPlaying(false)
-        }
-      }
+  const playAudio = async (isActiveRef: { current: boolean }) => {
+    setIsPlaying(true)
+    await playAudioWithReplay(currentProblem.text, settings.replayCount, isActiveRef)
+    if (isActiveRef.current) {
+      setIsPlaying(false)
     }
-    playAudio()
+  }
+
+  useEffect(() => {
+    const isActiveRef = { current: true }
+    playAudio(isActiveRef)
     return () => {
-      isActive = false
+      isActiveRef.current = false
       stopSpeech()
       setIsPlaying(false)
     }
@@ -67,22 +59,7 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
   const handleReplay = async () => {
     stopSpeech()
     await new Promise((resolve) => setTimeout(resolve, 50))
-    let isActive = true
-    try {
-      setIsPlaying(true)
-      for (let i = 0; i < settings.replayCount; i++) {
-        if (!isActive) break
-        await speakFrench(currentProblem.text)
-        if (i < settings.replayCount - 1 && isActive) {
-          await new Promise((resolve) => setTimeout(resolve, 300))
-        }
-      }
-    } finally {
-      if (isActive) {
-        await new Promise((resolve) => setTimeout(resolve, 200))
-        setIsPlaying(false)
-      }
-    }
+    await playAudio({ current: true })
   }
 
   return (
@@ -90,7 +67,7 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
       title={t('timeDictation.title')}
       instruction={t('timeDictation.instruction')}
       onCheck={handleCheck}
-      onStop={onStop || (() => {})}
+      onStop={onStop}
       showAnswer={showAnswer}
       answer={showAnswer ? currentProblem.answer : undefined}
       isCorrect={isCorrect}
@@ -107,10 +84,7 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
           onChange={(e) => setInput(e.target.value.replace(/\D/g, '').slice(0, 4))}
           placeholder="0000"
           maxLength={4}
-          autoComplete="off"
-          autoCapitalize="off"
-          autoCorrect="off"
-          spellCheck={false}
+          {...INPUT_FIELD_PROPS}
           disabled={showAnswer}
         />
       </div>

@@ -43,12 +43,7 @@
   },
   "articles": {
     "title": "冠詞填空",
-    "instruction": "填入缺少的冠詞",
-    "hint": "點擊單字查看資訊",
-    "explanation": "說明",
-    "masculine": "陽性",
-    "feminine": "陰性",
-    "both": "陽性/陰性"
+    "instruction": "填入缺少的冠詞"
   },
   "wordDictation": {
     "title": "單字聽寫",
@@ -67,7 +62,6 @@
   "common": {
     "check": "檢查答案",
     "next": "下一個",
-    "previous": "上一個",
     "stop": "結束",
     "restart": "重新開始",
     "replay": "重播",

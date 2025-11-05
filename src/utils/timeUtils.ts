@@ -1,9 +1,3 @@
-export interface TimeExpression {
-  hour: number
-  minute: number
-  format: '12h' | '24h'
-}
-
 export const generateTimeExpression = (): { text: string; answer: string } => {
   const hour24 = Math.floor(Math.random() * 24)
   const minute = Math.floor(Math.random() * 12) * 5

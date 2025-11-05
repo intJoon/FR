@@ -1,4 +1,4 @@
-export const normalizeText = (text: string, settings: { caseSensitive: boolean; accentSensitive: boolean }): string => {
+const normalizeText = (text: string, settings: { caseSensitive: boolean; accentSensitive: boolean }): string => {
   let normalized = text.trim()
 
   if (!settings.caseSensitive) {

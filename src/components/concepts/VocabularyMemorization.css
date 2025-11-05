@@ -52,35 +52,3 @@
   cursor: not-allowed;
 }
 
-.vocabulary-answer {
-  font-size: 14px;
-  color: #7f8c8d;
-  text-align: center;
-  font-weight: 600;
-}
-
-.next-button {
-  background: #27ae60;
-  color: white;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 20px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  min-height: 44px;
-}
-
-@media (hover: hover) {
-  .next-button:hover {
-    background: #229954;
-    transform: translateY(-2px);
-  }
-}
-
-.next-button:active {
-  background: #229954;
-  transform: translateY(-1px);
-}
-

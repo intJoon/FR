@@ -43,12 +43,7 @@
   },
   "articles": {
     "title": "Remplir les Articles",
-    "instruction": "Remplissez les articles manquants",
-    "hint": "Appuyez sur un mot pour voir les informations",
-    "explanation": "Explication",
-    "masculine": "Masculin",
-    "feminine": "Féminin",
-    "both": "Masculin/Féminin"
+    "instruction": "Remplissez les articles manquants"
   },
   "wordDictation": {
     "title": "Dictée de Mots",
@@ -67,7 +62,6 @@
   "common": {
     "check": "Vérifier la Réponse",
     "next": "Suivant",
-    "previous": "Précédent",
     "stop": "Arrêter",
     "restart": "Redémarrer",
     "replay": "Réécouter",

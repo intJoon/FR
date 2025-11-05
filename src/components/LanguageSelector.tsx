@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSettings } from '../context/SettingsContext'
 import './LanguageSelector.css'
@@ -7,7 +7,7 @@ interface LanguageSelectorProps {
   onClose?: () => void
 }
 
-export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onClose }) => {
+export const LanguageSelector: FC<LanguageSelectorProps> = ({ onClose }) => {
   const { t, i18n } = useTranslation()
   const { settings, updateSettings } = useSettings()
   const [isOpen, setIsOpen] = useState(false)
