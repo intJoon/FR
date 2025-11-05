@@ -23,21 +23,30 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
   const [isPlaying, setIsPlaying] = useState(true)
 
   useEffect(() => {
-    setIsPlaying(true)
+    let isActive = true
     const playAudio = async () => {
       try {
+        setIsPlaying(true)
         for (let i = 0; i < settings.replayCount; i++) {
+          if (!isActive) break
           await speakFrench(currentProblem.text)
-          if (i < settings.replayCount - 1) {
+          if (i < settings.replayCount - 1 && isActive) {
             await new Promise((resolve) => setTimeout(resolve, 500))
           }
         }
       } finally {
-        setIsPlaying(false)
+        if (isActive) {
+          await new Promise((resolve) => setTimeout(resolve, 100))
+          setIsPlaying(false)
+        }
       }
     }
     playAudio()
-    return () => stopSpeech()
+    return () => {
+      isActive = false
+      stopSpeech()
+      setIsPlaying(false)
+    }
   }, [currentProblem, settings.replayCount])
 
   const handleCheck = () => {
@@ -59,16 +68,22 @@ export const TimeDictation: React.FC<TimeDictationProps> = ({ onAnswerChecked, o
 
   const handleReplay = async () => {
     stopSpeech()
-    setIsPlaying(true)
+    await new Promise((resolve) => setTimeout(resolve, 50))
+    let isActive = true
     try {
+      setIsPlaying(true)
       for (let i = 0; i < settings.replayCount; i++) {
+        if (!isActive) break
         await speakFrench(currentProblem.text)
-        if (i < settings.replayCount - 1) {
+        if (i < settings.replayCount - 1 && isActive) {
           await new Promise((resolve) => setTimeout(resolve, 300))
         }
       }
     } finally {
-      setIsPlaying(false)
+      if (isActive) {
+        await new Promise((resolve) => setTimeout(resolve, 200))
+        setIsPlaying(false)
+      }
     }
   }
 

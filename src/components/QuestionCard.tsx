@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { isSpeaking } from '../utils/speechUtils'
 import './QuestionCard.css'
 
 interface QuestionCardProps {
@@ -32,6 +33,28 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   isPlaying = false,
 }) => {
   const { t } = useTranslation()
+  const [actualPlaying, setActualPlaying] = useState(false)
+
+  useEffect(() => {
+    if (isPlaying) {
+      setActualPlaying(true)
+    }
+
+    const checkInterval = setInterval(() => {
+      const speaking = isSpeaking()
+      if (isPlaying || speaking) {
+        setActualPlaying(true)
+      } else {
+        setActualPlaying(false)
+      }
+    }, 100)
+
+    return () => {
+      clearInterval(checkInterval)
+    }
+  }, [isPlaying])
+
+  const shouldShowIndicator = isPlaying || actualPlaying
 
   return (
     <div className="question-card">
@@ -41,7 +64,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       <div className="question-header">
         <div className="question-header-row">
           <h2>{title}</h2>
-          {isPlaying && <div className="playing-indicator">{t('common.playing')}</div>}
+          {shouldShowIndicator && <div className="playing-indicator">{t('common.playing')}</div>}
         </div>
         {instruction && <p className="instruction">{instruction}</p>}
       </div>

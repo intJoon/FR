@@ -27,13 +27,46 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
   const [_problemIndex, setProblemIndex] = useState(0)
 
   useEffect(() => {
-    setIsPlaying(true)
+    let isActive = true
+    const playAudio = async () => {
+      try {
+        setIsPlaying(true)
+        let audioText = currentSentence.text
+        let blankOffset = 0
+        currentSentence.blanks.forEach((blank) => {
+          const answer = blank.answers[0]
+          const blankPos = audioText.indexOf('___', blankOffset)
+          if (blankPos !== -1) {
+            audioText = audioText.substring(0, blankPos) + answer + audioText.substring(blankPos + 3)
+            blankOffset = blankPos + answer.length
+          }
+        })
+        for (let i = 0; i < settings.replayCount; i++) {
+          if (!isActive) break
+          await speakFrench(audioText)
+          if (i < settings.replayCount - 1 && isActive) {
+            await new Promise((resolve) => setTimeout(resolve, 500))
+          }
+        }
+      } finally {
+        if (isActive) {
+          await new Promise((resolve) => setTimeout(resolve, 100))
+          setIsPlaying(false)
+        }
+      }
+    }
     playAudio()
-    return () => stopSpeech()
+    return () => {
+      isActive = false
+      stopSpeech()
+      setIsPlaying(false)
+    }
   }, [currentSentence, settings.replayCount])
 
   const playAudio = async () => {
+    let isActive = true
     try {
+      setIsPlaying(true)
       let audioText = currentSentence.text
       let blankOffset = 0
       currentSentence.blanks.forEach((blank) => {
@@ -45,13 +78,17 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
         }
       })
       for (let i = 0; i < settings.replayCount; i++) {
+        if (!isActive) break
         await speakFrench(audioText)
-        if (i < settings.replayCount - 1) {
+        if (i < settings.replayCount - 1 && isActive) {
           await new Promise((resolve) => setTimeout(resolve, 500))
         }
       }
     } finally {
-      setIsPlaying(false)
+      if (isActive) {
+        await new Promise((resolve) => setTimeout(resolve, 100))
+        setIsPlaying(false)
+      }
     }
   }
 
@@ -98,8 +135,9 @@ export const WordDictation: React.FC<WordDictationProps> = ({ onAnswerChecked, o
     setProblemIndex((prev) => prev + 1)
   }
 
-  const handleReplay = () => {
+  const handleReplay = async () => {
     stopSpeech()
+    await new Promise((resolve) => setTimeout(resolve, 50))
     playAudio()
   }
 

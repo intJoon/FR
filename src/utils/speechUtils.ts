@@ -11,11 +11,23 @@ export const speakFrench = (text: string, lang: string = 'fr-FR'): Promise<void>
     utterance.pitch = 1.0
     utterance.volume = 1.0
 
-    utterance.onend = () => resolve()
-    utterance.onerror = (error) => reject(error)
+    utterance.onend = () => {
+      resolve()
+    }
+
+    utterance.onerror = (error) => {
+      reject(error)
+    }
 
     window.speechSynthesis.speak(utterance)
   })
+}
+
+export const isSpeaking = (): boolean => {
+  if (!('speechSynthesis' in window)) {
+    return false
+  }
+  return window.speechSynthesis.speaking
 }
 
 export const stopSpeech = () => {
